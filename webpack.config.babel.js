@@ -11,6 +11,7 @@
  */
 
 import { join } from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { optimize } from 'webpack'
 
 export default {
@@ -31,6 +32,24 @@ export default {
       'minimize': true,
       'comments': false,
       'compressor': { 'warnings': false }
+    }),
+
+    new HtmlWebpackPlugin({
+      'filename': 'index.html',
+      'template': './index.html',
+      'minify': {
+        'collapseBooleanAttributes': true,
+        'collapseInlineTagWhitespace': true,
+        'collapseWhitespace': true,
+        'decodeEntities': true,
+        'removeAttributeQuotes': true,
+        'removeComments': true,
+        'removeEmptyAttributes': true,
+        'removeRedundantAttributes': true,
+        'removeScriptTypeAttributes': true,
+        'removeStyleLinkTypeAttributes': true,
+        'useShortDoctype': true
+      }
     })
   ]
 }
