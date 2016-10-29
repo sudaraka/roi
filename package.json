@@ -7,6 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "server": "live-server src/ -V --no-browser --port=5000",
     "test": "exit 0;"
   },
   "repository": {
@@ -24,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/sudaraka/roi/issues"
   },
-  "homepage": "https://github.com/sudaraka/roi#readme"
+  "homepage": "https://github.com/sudaraka/roi#readme",
+  "devDependencies": {
+    "live-server": "^1.1.0"
+  }
 }
