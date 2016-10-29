@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "server": "live-server src/ -V --no-browser --port=5000",
+    "pretest": "eslint src/",
     "test": "exit 0;"
   },
   "repository": {
@@ -27,8 +28,10 @@
   },
   "homepage": "https://github.com/sudaraka/roi#readme",
   "devDependencies": {
+    "@sudaraka/eslint-config-default": "^1.0.0",
     "babel-core": "^6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "eslint": "^3.9.0",
     "live-server": "^1.1.0"
   }
 }
