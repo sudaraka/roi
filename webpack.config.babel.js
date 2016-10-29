@@ -11,18 +11,34 @@
  */
 
 import { join } from 'path'
+import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { optimize } from 'webpack'
 
 export default {
   'context': join(__dirname, 'src'),
 
-  'entry': { 'index.js': './index.js' },
+  'entry': {
+    'index.js': [
+      './index.js',
+      './main.scss'
+    ]
+  },
 
   'output': {
     'path': join(__dirname, 'dist'),
     'publicPath': '/',
     'filename': '[name]'
+  },
+
+  'module': {
+    'loaders': [
+      {
+        'test': /\.scss$/,
+        'exclude': /node_modules/,
+        'loader': ExtractText.extract([ 'css', 'sass' ])
+      }
+    ]
   },
 
   'plugins': [
@@ -50,6 +66,7 @@ export default {
         'removeStyleLinkTypeAttributes': true,
         'useShortDoctype': true
       }
-    })
+    }),
+    new ExtractText('styles.css')
   ]
 }
