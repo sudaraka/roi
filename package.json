@@ -1,0 +1,28 @@
+{
+  "name": "@sudaraka/roi",
+  "version": "0.0.0",
+  "description": "Record different types of investment information and calculate monthly/yearly return.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudaraka/roi.git"
+  },
+  "keywords": [
+    "personal",
+    "investment",
+    "return",
+    "calculator"
+  ],
+  "author": "Sudaraka Wijesinghe <sudaraka@sudaraka.org> (https://sudaraka.org/)",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/sudaraka/roi/issues"
+  },
+  "homepage": "https://github.com/sudaraka/roi#readme"
+}
