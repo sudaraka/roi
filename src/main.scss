@@ -1,0 +1,80 @@
+div {
+  border: 1px dashed rgba(0, 0, 0, .3);
+  padding: 1px;
+}
+
+.numeric {
+  text-align: right;
+  justify-content: right;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 66vw;
+  min-width: 960px;
+
+  section {
+    &> div {
+      display: flex;
+      align-items: center;
+      height: 2rem;
+
+      &:first-child {
+        height: 3rem;
+      }
+    }
+  }
+
+  &> section {
+    float: left;
+    width: 16%;
+
+    div:nth-child(-n+4) {
+      font-weight: bold;
+    }
+
+    &:last-child {
+      &> div {
+        @extend .numeric;
+
+        font-weight: bold;
+      }
+    }
+  }
+
+  .vscroll {
+    float: left;
+    display: inline-flex;
+    width: 68%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &> section {
+      flex: 1 0 25%;
+
+      div:first-child {
+        justify-content: center;
+      }
+
+      div:first-child, div:last-child {
+        font-weight: bold;
+      }
+
+      div + div {
+        @extend .numeric;
+      }
+    }
+  }
+}
