@@ -4,6 +4,7 @@ div {
 }
 
 .numeric {
+  font-family: 'Droid Sans Mono', monospace;
   text-align: right;
   justify-content: right;
 }
@@ -12,7 +13,18 @@ div {
   box-sizing: border-box;
 }
 
+h1 {
+  font-family: 'Droid Serif', serif;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+}
+
+html {
+  font-size: 100%;
+}
+
 body {
+  font: normal .875rem/.875rem 'Droid Sans', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +61,9 @@ body {
       &> div {
         @extend .numeric;
 
-        font-weight: bold;
+        &:last-child {
+          font-weight: bold;
+        }
       }
     }
   }
@@ -64,16 +78,15 @@ body {
     &> section {
       flex: 1 0 25%;
 
-      div:first-child {
-        justify-content: center;
-      }
+      &> div {
+        &:first-child {
+          justify-content: center;
+          font-weight: bold;
+        }
 
-      div:first-child, div:last-child {
-        font-weight: bold;
-      }
-
-      div + div {
-        @extend .numeric;
+        & + div {
+          @extend .numeric;
+        }
       }
     }
   }
