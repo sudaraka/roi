@@ -3,10 +3,14 @@ div {
   padding: 1px;
 }
 
-.numeric {
-  font-family: 'Droid Sans Mono', monospace;
+.ralign {
   text-align: right;
   justify-content: right;
+}
+
+.numeric {
+  @extend .ralign;
+  font-family: 'Droid Sans Mono', monospace;
 }
 
 * {
@@ -59,10 +63,14 @@ body {
 
     &:last-child {
       &> div {
-        @extend .numeric;
+        @extend .ralign;
 
         &:last-child {
           font-weight: bold;
+        }
+
+        & + div {
+          @extend .numeric;
         }
       }
     }
