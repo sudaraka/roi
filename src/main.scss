@@ -1,8 +1,3 @@
-div {
-  border: 1px dashed rgba(0, 0, 0, .3);
-  padding: 1px;
-}
-
 .ralign {
   text-align: right;
   justify-content: right;
@@ -43,7 +38,10 @@ body {
   min-width: 960px;
 
   section {
-    &> div {
+    border-top: 1px solid #656D78;
+    border-bottom: 1px solid #656D78;
+
+    & > div {
       display: flex;
       align-items: center;
       height: 2rem;
@@ -57,6 +55,11 @@ body {
 
       &:last-child {
         background-color: #7DB1B1;
+        border: none;
+      }
+
+      & + div + div {
+        border-top: 1px dotted #CCD1D9;
       }
 
       & + div:nth-child(-n+4) {
@@ -66,7 +69,7 @@ body {
     }
   }
 
-  &> section {
+  & > section {
     float: left;
     width: 16%;
 
@@ -76,13 +79,23 @@ body {
 
     &:first-child {
       background-color: #F5F7FA;
+      border-left: 1px solid #656D78;
+
+      & > div:first-child {
+        border-right: 1px dotted #656D78;
+      }
     }
 
     &:last-child {
       background-color: #E6E9ED;
+      border-right: 1px solid #656D78;
 
-      &> div {
+      & > div {
         @extend .ralign;
+
+        &:first-child {
+          border-left: 1px dotted #656D78;
+        }
 
         &:last-child {
           font-weight: bold;
@@ -102,10 +115,10 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
 
-    &> section {
+    & > section {
       flex: 1 0 25%;
 
-      &> div {
+      & > div {
         &:first-child {
           justify-content: center;
           font-weight: bold;
@@ -121,6 +134,14 @@ body {
           &:nth-child(-n+4) {
             background-color: #A0D468;
           }
+        }
+      }
+
+      & + section > div {
+        border-left: 1px dotted #CCD1D9;
+
+        &:first-child {
+          border-left: 1px dotted #656D78;
         }
       }
     }
