@@ -19,6 +19,7 @@ div {
 
 h1 {
   font-family: 'Droid Serif', serif;
+  color: #E9573F;
   text-transform: uppercase;
   letter-spacing: 1rem;
 }
@@ -49,6 +50,17 @@ body {
 
       &:first-child {
         height: 3rem;
+        background-color: #434A54;
+        color: #E8CE4D;
+      }
+
+      &:last-child {
+        background-color: #7DB1B1;
+      }
+
+      & + div:nth-child(-n+4) {
+        background-color: #8CC152;
+        color: #000;
       }
     }
   }
@@ -61,7 +73,13 @@ body {
       font-weight: bold;
     }
 
+    &:first-child {
+      background-color: #F5F7FA;
+    }
+
     &:last-child {
+      background-color: #E6E9ED;
+
       &> div {
         @extend .ralign;
 
@@ -92,8 +110,16 @@ body {
           font-weight: bold;
         }
 
+        &:last-child {
+          background-color: #A0CECB;
+        }
+
         & + div {
           @extend .numeric;
+
+          &:nth-child(-n+4) {
+            background-color: #A0D468;
+          }
         }
       }
     }
