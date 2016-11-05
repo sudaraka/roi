@@ -10,6 +10,26 @@
   @extend .ralign
   font-family: 'Droid Sans Mono', monospace
 
+// indicate the next maturity
+.next
+  background-color: lighten(#FFCE54, 10%)
+
+// Indicate a table cell with action associated with it
+// set cursor to indicate this is clickable
+.action
+  cursor: pointer
+  position: relative
+
+  // icon in cell
+  i
+    position: absolute
+    padding: .5rem
+    visibility: hidden
+
+  // show icon on hover
+  &:hover i
+    visibility: visible
+
 // Helper classes --------------------------------------------------------------
 
 // Reset defaults --------------------------------------------------------------
@@ -58,8 +78,15 @@ body
       // first row is the title of the column
       &:first-child
         height: 3rem
+        line-height: 1.25rem
         background-color: #434A54
         color: #E8CE4D
+
+        // icon in first row
+        i
+          color: #5D9CEC
+          padding: 1rem
+          right: 0
 
       // last row is where we show the total
       &:last-child
@@ -149,6 +176,11 @@ body
           // rows 2 to 4 are specially highlighted
           &:nth-child(-n+4)
             background-color: #A0D468
+
+          // icon in first row
+          i
+            color: #2ABA66
+            left: 0
 
       // rows in the 2nd and following scrollable columns
       & + section > div
