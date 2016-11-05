@@ -21,7 +21,7 @@ export default {
   'entry': {
     'index.js': [
       './index.js',
-      './main.scss'
+      './main.sass'
     ]
   },
 
@@ -34,7 +34,7 @@ export default {
   'module': {
     'loaders': [
       {
-        'test': /\.scss$/,
+        'test': /\.sass$/,
         'exclude': /node_modules/,
         'loader': ExtractText.extract([ 'css', 'sass' ])
       }
