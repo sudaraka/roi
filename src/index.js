@@ -10,3 +10,13 @@
  *
  */
 
+import xs from 'xstream'
+import { run } from '@cycle/xstream-run'
+import { section, makeDOMDriver } from '@cycle/dom'
+
+const
+  drivers = { 'DOM': makeDOMDriver('#app') },
+
+  main = () => ({ 'DOM': xs.of(section('Column 1')) })
+
+run(main, drivers)
