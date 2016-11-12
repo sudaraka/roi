@@ -14,24 +14,10 @@ import xs from 'xstream'
 import { run } from '@cycle/xstream-run'
 import { div, section, makeDOMDriver } from '@cycle/dom'
 
+import component from './component.js'
+
 const
   drivers = { 'DOM': makeDOMDriver('#app') },
-
-  identity = _ => _,
-
-  component = builder => {
-    const
-      { intent, model, view } = {
-        'intent': identity,
-        'model': identity,
-        ...builder()
-      }
-
-    return source => ({
-      ...source,
-      'DOM': view(model(intent(source)))
-    })
-  },
 
   column = component(() => ({
     'intent': src => src.props,
