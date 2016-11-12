@@ -19,32 +19,36 @@ const
 
   identity = _ => _,
 
-  component = (intent = identity) => (model = identity) => view => source => ({
-    ...source,
-    'DOM': view(model(intent(source)))
-  }),
-
-  column = source => {
+  component = builder => {
     const
-      intent = src => src.props,
-      view = state$ => state$.map(state => section([ div(state.title) ]))
+      { intent, model, view } = {
+        'intent': identity,
+        'model': identity,
+        ...builder()
+      }
 
-    return component(intent)()(view)(source)
+    return source => ({
+      ...source,
+      'DOM': view(model(intent(source)))
+    })
   },
 
-  hscroll = source => {
-    const
-      intent = src => src.props.columns,
+  column = component(() => ({
+    'intent': src => src.props,
 
-      view = state$ => state$
-        .map(title => column({ 'props': xs.of({ title }) }).DOM)
-        .flatten()
-        .fold((acc, col$) => [ ...acc, col$ ], [])
-        .last()
-        .map(columns => div('.hscroll', columns))
+    'view': state$ => state$.map(state => section([ div(state.title) ]))
+  })),
 
-    return component(intent)()(view)(source)
-  },
+  hscroll = component(() => ({
+    'intent': src => src.props.columns,
+
+    'view': state$ => state$
+      .map(title => column({ 'props': xs.of({ title }) }).DOM)
+      .flatten()
+      .fold((acc, col$) => [ ...acc, col$ ], [])
+      .last()
+      .map(columns => div('.hscroll', columns))
+  })),
 
   main = () => {
     const
