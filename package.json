@@ -42,6 +42,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
     "live-server": "^1.1.0",
+    "moment": "^2.16.0",
     "node-sass": "^3.11.3",
     "sass-loader": "^4.0.2",
     "webpack": "^1.13.3",

@@ -13,7 +13,7 @@
 import { join } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { optimize } from 'webpack'
+import { IgnorePlugin, optimize } from 'webpack'
 
 export default {
   'context': join(__dirname, 'src'),
@@ -47,6 +47,9 @@ export default {
   },
 
   'plugins': [
+    // Exclude moment.js locale from the build
+    new IgnorePlugin(/locale/, /moment$/),
+
     new optimize.OccurenceOrderPlugin(),
     new optimize.DedupePlugin(),
     new optimize.UglifyJsPlugin({
