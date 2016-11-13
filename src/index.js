@@ -13,6 +13,7 @@
 import xs from 'xstream'
 import { run } from '@cycle/xstream-run'
 import { div, section, makeDOMDriver } from '@cycle/dom'
+import moment from 'moment'
 
 import component from './component.js'
 
@@ -22,7 +23,22 @@ const
   column = component(() => ({
     'intent': src => src.props,
 
-    'view': state$ => state$.map(state => section([ div(state.title) ]))
+    'model': props$ => {
+      const
+        title$ = props$.map(props => props.title),
+
+        months$ = props$
+          .map(props => props.months || xs.of(...Array(12)))
+          .flatten()
+
+      return xs.merge(title$, months$)
+    },
+
+    'view': rows$ => rows$
+      .map(text => div(text))
+      .fold((acc, row$) => [ ...acc, row$ ], [])
+      .last()
+      .map(rows => section(rows))
   })),
 
   hscroll = component(() => ({
@@ -38,8 +54,17 @@ const
 
   main = () => {
     const
-      titleColumn$ = column({ 'props': xs.of({ 'title': 'xxx' }) }).DOM,
+      months$ = xs.from([ ...Array(12).keys() ].map(index => moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM'))),
+
+      titleColumn$ = column({
+        'props': xs.of({
+          'title': 'Account',
+          'months': months$
+        })
+      }).DOM,
+
       hscroll$ = hscroll({ 'props': { 'columns': xs.of('one', 'two', 'three', 'four', 'five') } }).DOM,
+
       totalColumn$ = column({ 'props': xs.of({ 'title': 'yyy' }) }).DOM
 
     return {
