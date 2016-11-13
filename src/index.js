@@ -27,6 +27,10 @@ const
       const
         title$ = props$.map(props => props.title),
 
+        header$ = props$
+          .map(props => props.header || xs.of(...Array(3)))
+          .flatten(),
+
         months$ = props$
           .map(props => props.months || xs.of(...Array(12)))
           .flatten(),
@@ -35,7 +39,7 @@ const
           .map(props => props.total || xs.of(''))
           .flatten()
 
-      return xs.merge(title$, months$, total$)
+      return xs.merge(title$, header$, months$, total$)
     },
 
     'view': rows$ => rows$
@@ -63,6 +67,7 @@ const
       titleColumn$ = column({
         'props': xs.of({
           'title': 'Account',
+          'header': xs.of('Amount', 'Interest Rate', 'Revenue / Month'),
           'months': months$
         })
       }).DOM,
