@@ -66,15 +66,16 @@ const
       .map(columns => div('.hscroll', columns))
   })),
 
-  main = () => {
-    const
-      months$ = xs.from(
-        [ ...Array(12).keys() ]
-          .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
-      ),
+  main = component(() => ({
+    'intent': () => {
+      const
+        months$ = xs.from(
+          [ ...Array(12).keys() ]
+            .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
+        )
 
-      titleColumn$ = column({
-        'props': xs.of({
+      return xs.of({
+        'titleColumn': xs.of({
           'title': {
             'text': 'Account',
             'className': 'action',
@@ -86,17 +87,22 @@ const
             { 'text': 'Revenue / Month' }
           ),
           'months': months$
-        })
-      }).DOM,
+        }),
 
-      hscroll$ = hscroll({ 'props': { 'columns': xs.of('one', 'two', 'three', 'four', 'five') } }).DOM,
+        'accounts': xs.of('one', 'two', 'three', 'four', 'five'),
 
-      totalColumn$ = column({ 'props': xs.of({ 'title': { 'text': 'Total' } }) }).DOM
+        'totalColumn': xs.of({ 'title': { 'text': 'Total' } })
+      })
+    },
 
-    return {
-      'DOM': xs.combine(titleColumn$, hscroll$, totalColumn$)
-        .map(col => div('.container', col))
-    }
-  }
+    'view': state$ => state$
+      .map(state => xs.combine(
+        column({ 'props': state.titleColumn }).DOM,
+        hscroll({ 'props': { 'columns': state.accounts } }).DOM,
+        column({ 'props': state.totalColumn }).DOM
+      ))
+      .flatten()
+      .map(table => div('.container', table))
+  }))
 
 run(main, drivers)
