@@ -29,9 +29,13 @@ const
 
         months$ = props$
           .map(props => props.months || xs.of(...Array(12)))
+          .flatten(),
+
+        total$ = props$
+          .map(props => props.total || xs.of(''))
           .flatten()
 
-      return xs.merge(title$, months$)
+      return xs.merge(title$, months$, total$)
     },
 
     'view': rows$ => rows$
