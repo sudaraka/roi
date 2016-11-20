@@ -30,22 +30,22 @@
   },
   "homepage": "https://github.com/sudaraka/roi#readme",
   "devDependencies": {
-    "@cycle/dom": "^14.0.0",
+    "@cycle/dom": "^14.1.0",
     "@cycle/xstream-run": "^3.1.0",
     "@sudaraka/eslint-config-default": "^1.0.0",
     "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.7",
+    "babel-loader": "^6.2.8",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
-    "css-loader": "^0.25.0",
-    "eslint": "^3.10.0",
+    "babel-plugin-transform-object-rest-spread": "^6.19.0",
+    "css-loader": "^0.26.0",
+    "eslint": "^3.10.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
     "live-server": "^1.1.0",
     "moment": "^2.16.0",
-    "node-sass": "^3.11.3",
+    "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
     "webpack": "^1.13.3",
-    "xstream": "^7.0.0"
+    "xstream": "^8.0.0"
   }
 }
