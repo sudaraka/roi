@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p --env.prod",
     "clean": "rm -fr dist/",
     "server": "live-server dist/ -V --no-browser --port=5000",
     "pretest": "eslint src/",
@@ -39,13 +39,13 @@
     "babel-plugin-transform-object-rest-spread": "^6.19.0",
     "css-loader": "^0.26.0",
     "eslint": "^3.10.2",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.24.1",
     "live-server": "^1.1.0",
     "moment": "^2.16.0",
     "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
-    "webpack": "^1.13.3",
+    "webpack": "^2.1.0-beta.27",
     "xstream": "^8.0.0"
   }
 }

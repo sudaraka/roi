@@ -10,13 +10,13 @@
  *
  */
 
-import { join } from 'path'
+import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { IgnorePlugin, optimize } from 'webpack'
+import { IgnorePlugin } from 'webpack'
 
-export default {
-  'context': join(__dirname, 'src'),
+export default env => ({
+  'context': resolve('src'),
 
   'entry': {
     'index.js': [
@@ -26,7 +26,7 @@ export default {
   },
 
   'output': {
-    'path': join(__dirname, 'dist'),
+    'path': resolve('dist'),
     'publicPath': '/',
     'filename': '[name]'
   },
@@ -36,12 +36,12 @@ export default {
       {
         'test': /\.js$/,
         'exclude': /node_modules/,
-        'loader': 'babel'
+        'loaders': [ 'babel-loader' ]
       },
       {
         'test': /\.sass$/,
         'exclude': /node_modules/,
-        'loader': ExtractText.extract([ 'css', 'sass' ])
+        'loaders': ExtractText.extract([ 'css-loader', 'sass-loader' ])
       }
     ]
   },
@@ -49,14 +49,6 @@ export default {
   'plugins': [
     // Exclude moment.js locale from the build
     new IgnorePlugin(/locale/, /moment$/),
-
-    new optimize.OccurenceOrderPlugin(),
-    new optimize.DedupePlugin(),
-    new optimize.UglifyJsPlugin({
-      'minimize': true,
-      'comments': false,
-      'compressor': { 'warnings': false }
-    }),
 
     new HtmlWebpackPlugin({
       'filename': 'index.html',
@@ -76,5 +68,7 @@ export default {
       }
     }),
     new ExtractText('styles.css')
-  ]
-}
+  ],
+
+  'devtool': env.prod ? '' : 'eval'
+})
