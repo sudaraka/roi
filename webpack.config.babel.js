@@ -70,5 +70,10 @@ export default env => ({
     new ExtractText('styles.css')
   ],
 
-  'devtool': env.prod ? '' : 'eval'
+  'devtool': env.prod ? '' : 'eval',
+
+  'devServer': {
+    'host': '127.0.0.1',
+    'port': 5000
+  }
 })
