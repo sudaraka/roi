@@ -12,44 +12,22 @@
 
 import xs from 'xstream'
 import { div } from '@cycle/dom'
-import moment from 'moment'
 
 import component from '../helper'
 import column from '../column'
+import titleColumn from '../title-column'
 import hscroll from '../hscroll'
 
 export default component(() => ({
-  'intent': () => {
-    const
-      months$ = xs.from(
-        [ ...Array(12).keys() ]
-          .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
-      )
+  'intent': () => xs.of({
+    'accounts': xs.of('one', 'two', 'three', 'four', 'five'),
 
-    return xs.of({
-      'titleColumn': xs.of({
-        'title': {
-          'text': 'Account',
-          'className': 'action',
-          'icon': 'plus'
-        },
-        'header': xs.of(
-          { 'text': 'Amount' },
-          { 'text': 'Interest Rate' },
-          { 'text': 'Revenue / Month' }
-        ),
-        'months': months$
-      }),
-
-      'accounts': xs.of('one', 'two', 'three', 'four', 'five'),
-
-      'totalColumn': xs.of({ 'title': { 'text': 'Total' } })
-    })
-  },
+    'totalColumn': xs.of({ 'title': { 'text': 'Total' } })
+  }),
 
   'view': state$ => state$
     .map(state => xs.combine(
-      column({ 'props': state.titleColumn }).DOM,
+      titleColumn().DOM,
       hscroll({ 'props': { 'columns': state.accounts } }).DOM,
       column({ 'props': state.totalColumn }).DOM
     ))
