@@ -13,7 +13,7 @@
 import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { IgnorePlugin } from 'webpack'
+import { IgnorePlugin, NamedModulesPlugin } from 'webpack'
 
 export default env => ({
   'context': resolve('src'),
@@ -67,7 +67,9 @@ export default env => ({
         'useShortDoctype': true
       }
     }),
-    new ExtractText('styles.css')
+    new ExtractText('styles.css'),
+
+    new NamedModulesPlugin()
   ],
 
   'devtool': env.prod ? '' : 'eval',
