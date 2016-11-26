@@ -97,10 +97,14 @@ body
       & + div + div
         border-top: 1px dotted #CCD1D9
 
-      // rows from 2 to 4 have special highlighting
-      & + div:nth-child(-n+4)
+      // rows from 2 to 3 have special highlighting
+      & + div:nth-child(-n+3)
         background-color: #8CC152
         color: #000
+
+      // row 4 also have special highlighting
+      & + div:nth-child(4)
+        background-color: #F6BB42
 
   // <section> tags that are direct children of the .container needs to have
   // darker complexion and are the first and last columns that show titles and
@@ -173,9 +177,13 @@ body
         & + div
           @extend .numeric
 
-          // rows 2 to 4 are specially highlighted
-          &:nth-child(-n+4)
+          // rows 2 to 3 are specially highlighted
+          &:nth-child(-n+3)
             background-color: #A0D468
+
+          // row 4 also specially highlighted
+          &:nth-child(4)
+            background-color: #FFCE54
 
           // icon in first row
           i
