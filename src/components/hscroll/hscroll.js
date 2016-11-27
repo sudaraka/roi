@@ -38,7 +38,7 @@ export default component(() => ({
         'header': xs.of(
           { 'text': numberFormat(acc.amount) },
           { 'text': `${acc.interestRate.toFixed(2)}%` },
-          { 'text': '' }
+          { 'text': numberFormat(acc.monthlyRevenue) }
         )
       })
     }).DOM)

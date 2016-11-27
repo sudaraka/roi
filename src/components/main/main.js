@@ -19,6 +19,7 @@ import titleColumn from '../title-column'
 import hscroll from '../hscroll'
 
 import { getAccounts } from '../../data'
+import { calculateReturns } from '../../helper'
 
 export default component(() => ({
   'intent': () => xs.of({
@@ -33,6 +34,7 @@ export default component(() => ({
     'accounts': state.accounts
       .map(x => xs.from(x))
       .flatten()
+      .map(calculateReturns)
   })),
 
   'view': state$ => state$

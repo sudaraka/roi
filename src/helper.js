@@ -14,6 +14,11 @@ const
   numberFormat = num => parseFloat(num).toLocaleString('en', {
     'minimumFractionDigits': 2,
     'maximumFractionDigits': 2
+  }),
+
+  calculateReturns = account => ({
+    ...account,
+    'monthlyRevenue': account.amount * account.interestRate / 100 / 12
   })
 
-export { numberFormat }
+export { numberFormat, calculateReturns }
