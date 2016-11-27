@@ -15,33 +15,13 @@ import xs from 'xstream'
 import { div } from '@cycle/dom'
 
 import component from '../helper'
-import column from '../column'
-import { numberFormat } from '../../helper'
+import accountColumn from '../account-column'
 
 export default component(() => ({
-  'intent': src => src.props.columns,
+  'intent': src => src.props.accounts,
 
-  'model': account$ => account$
-    .map(acc => ({
-      ...acc,
-      'text': `${acc.type}|${acc._id}`
-    })),
-
-  'view': state$ => state$
-    .map(acc => column({
-      'props': xs.of({
-        'title': {
-          'text': acc.text,
-          'className': 'action',
-          'icon': 'pencil'
-        },
-        'header': xs.of(
-          { 'text': numberFormat(acc.amount) },
-          { 'text': `${acc.interestRate.toFixed(2)}%` },
-          { 'text': numberFormat(acc.monthlyRevenue) }
-        )
-      })
-    }).DOM)
+  'view': account$ => account$
+    .map(acc => accountColumn({ 'props': { 'account': xs.of(acc) } }).DOM)
     .flatten()
     .fold((acc, col$) => [ ...acc, col$ ], [])
     .last()
