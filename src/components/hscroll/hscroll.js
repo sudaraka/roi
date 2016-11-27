@@ -16,6 +16,7 @@ import { div } from '@cycle/dom'
 
 import component from '../helper'
 import column from '../column'
+import { numberFormat } from '../../helper'
 
 export default component(() => ({
   'intent': src => src.props.columns,
@@ -35,7 +36,7 @@ export default component(() => ({
           'icon': 'pencil'
         },
         'header': xs.of(
-          { 'text': acc.amount },
+          { 'text': numberFormat(acc.amount) },
           { 'text': `${acc.interestRate.toFixed(2)}%` },
           { 'text': '' }
         )
