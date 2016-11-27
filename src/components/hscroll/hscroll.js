@@ -20,8 +20,27 @@ import column from '../column'
 export default component(() => ({
   'intent': src => src.props.columns,
 
+  'model': account$ => account$
+    .map(acc => ({
+      ...acc,
+      'text': `${acc.type}|${acc._id}`
+    })),
+
   'view': state$ => state$
-    .map(text => column({ 'props': xs.of({ 'title': { text } }) }).DOM)
+    .map(acc => column({
+      'props': xs.of({
+        'title': {
+          'text': acc.text,
+          'className': 'action',
+          'icon': 'pencil'
+        },
+        'header': xs.of(
+          { 'text': acc.amount },
+          { 'text': `${acc.interestRate.toFixed(2)}%` },
+          { 'text': '' }
+        )
+      })
+    }).DOM)
     .flatten()
     .fold((acc, col$) => [ ...acc, col$ ], [])
     .last()

@@ -18,12 +18,22 @@ import column from '../column'
 import titleColumn from '../title-column'
 import hscroll from '../hscroll'
 
+import { getAccounts } from '../../data'
+
 export default component(() => ({
   'intent': () => xs.of({
-    'accounts': xs.of('one', 'two', 'three', 'four', 'five'),
+    'accounts': xs.fromPromise(getAccounts()),
 
     'totalColumn': xs.of({ 'title': { 'text': 'Total' } })
   }),
+
+  'model': state$ => state$.map(state => ({
+    ...state,
+
+    'accounts': state.accounts
+      .map(x => xs.from(x))
+      .flatten()
+  })),
 
   'view': state$ => state$
     .map(state => xs.combine(
