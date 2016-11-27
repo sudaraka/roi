@@ -11,7 +11,7 @@
  */
 
 import xs from 'xstream'
-import { i, div, section } from '@cycle/dom'
+import { i, div, section, br } from '@cycle/dom'
 
 import component from '../helper'
 
@@ -38,13 +38,21 @@ export default component(() => ({
   },
 
   'view': rows$ => rows$
-    .map((row = { 'text': '' }) => div(
-      row.className ? `.${row.className}` : '',
-      [
-        row.text,
-        row.icon ? i(`.fa fa-${row.icon}`) : ''
-      ]
-    ))
+    .map((row = { 'text': '' }) => {
+      const
+        children = (row.text || '')
+          .toString()
+          .split('|')
+          .reduce((arr, word) => [ ...arr, word, br() ], [])
+
+      return div(
+        row.className ? `.${row.className}` : '',
+        [
+          ...children,
+          row.icon ? i(`.fa fa-${row.icon}`) : ''
+        ]
+      )
+    })
     .fold((acc, row$) => [ ...acc, row$ ], [])
     .last()
     .map(rows => section(rows))
