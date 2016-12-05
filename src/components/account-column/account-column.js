@@ -18,18 +18,25 @@ export default component(() => ({
   'intent': src => src.props.account,
 
   'model': account$ => account$
-    .map(acc => ({
-      'title': {
-        'text': `${acc.type}|${acc._id}`,
-        'className': 'action',
-        'icon': 'pencil'
-      },
-      'header': [
-        { 'text': numberFormat(acc.amount) },
-        { 'text': `${acc.interestRate.toFixed(2)}%` },
-        { 'text': numberFormat(acc.monthlyRevenue) }
-      ]
-    })),
+    .map(acc => {
+      const
+        months = [ ...Array(12).keys() ]
+          .map(index => ({ 'text': numberFormat((acc.matuarities[index] || {}).roi) }))
+
+      return {
+        'title': {
+          'text': `${acc.type}|${acc._id}`,
+          'className': 'action',
+          'icon': 'pencil'
+        },
+        'header': [
+          { 'text': numberFormat(acc.amount) },
+          { 'text': `${acc.interestRate.toFixed(2)}%` },
+          { 'text': numberFormat(acc.monthlyRevenue) }
+        ],
+        months
+      }
+    }),
 
   'view': state$ => column({ 'props': state$ }).DOM
 }))
