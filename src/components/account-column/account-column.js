@@ -10,8 +10,6 @@
  *
  */
 
-import xs from 'xstream'
-
 import component from '../helper'
 import column from '../column'
 import { numberFormat } from '../../helper'
@@ -26,11 +24,11 @@ export default component(() => ({
         'className': 'action',
         'icon': 'pencil'
       },
-      'header': xs.of(
+      'header': [
         { 'text': numberFormat(acc.amount) },
         { 'text': `${acc.interestRate.toFixed(2)}%` },
         { 'text': numberFormat(acc.monthlyRevenue) }
-      )
+      ]
     })),
 
   'view': state$ => column({ 'props': state$ }).DOM

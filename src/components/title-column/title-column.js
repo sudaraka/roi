@@ -19,10 +19,8 @@ import column from '../column'
 export default component(() => ({
   'intent': () => {
     const
-      months$ = xs.from(
-        [ ...Array(12).keys() ]
-          .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
-      )
+      months = [ ...Array(12).keys() ]
+        .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
 
     return xs.of({
       'title': {
@@ -30,12 +28,12 @@ export default component(() => ({
         'className': 'action',
         'icon': 'plus'
       },
-      'header': xs.of(
+      'header': [
         { 'text': 'Amount' },
         { 'text': 'Interest Rate' },
         { 'text': 'Revenue / Month' }
-      ),
-      'months': months$
+      ],
+      months
     })
   },
 
