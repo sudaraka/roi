@@ -18,24 +18,14 @@ import component from '../helper'
 export default component(() => ({
   'intent': src => src.props,
 
-  'model': props$ => {
-    const
-      title$ = props$.map(props => props.title),
-
-      header$ = props$
-      .map(props => props.header || xs.of(...Array(3)))
-      .flatten(),
-
-      months$ = props$
-      .map(props => props.months || xs.of(...Array(12)))
-      .flatten(),
-
-      total$ = props$
-      .map(props => props.total || xs.of(''))
-      .flatten()
-
-    return xs.merge(title$, header$, months$, total$)
-  },
+  'model': props$ => props$
+    .map(props => xs.merge(...[
+      xs.of(props.title),
+      props.header || xs.of(...Array(3)),
+      props.months || xs.of(...Array(12)),
+      props.total || xs.of('')
+    ]))
+    .flatten(),
 
   'view': rows$ => rows$
     .map((row = { 'text': '' }) => {
