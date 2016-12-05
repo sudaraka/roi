@@ -20,7 +20,7 @@ import accountColumn from '../account-column'
 export default component(() => ({
   'intent': src => src.props.accounts,
 
-  'view': account$ => account$
+  'view': accounts$ => accounts$
     .map(acc => accountColumn({ 'props': { 'account': xs.of(acc) } }).DOM)
     .flatten()
     .fold((acc, col$) => [ ...acc, col$ ], [])

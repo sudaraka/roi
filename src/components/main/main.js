@@ -32,7 +32,7 @@ export default component(() => ({
     ...state,
 
     'accounts': state.accounts
-      .map(x => xs.from(x))
+      .map(accounts => xs.from(accounts))
       .flatten()
       .map(calculateReturns)
   })),
