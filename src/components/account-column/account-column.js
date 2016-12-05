@@ -43,7 +43,13 @@ export default component(() => ({
           { 'text': `${acc.interestRate.toFixed(2)}%` },
           { 'text': numberFormat(acc.monthlyRevenue) }
         ],
-        months
+        months,
+        'total': {
+          'text': numberFormat(
+            Object.values(acc.matuarities)
+              .reduce((sum, matuarity) => sum + matuarity.roi, 0)
+          )
+        }
       }
     }),
 
