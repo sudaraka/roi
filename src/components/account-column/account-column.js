@@ -21,7 +21,16 @@ export default component(() => ({
     .map(acc => {
       const
         months = [ ...Array(12).keys() ]
-          .map(index => ({ 'text': numberFormat((acc.matuarities[index] || {}).roi) }))
+          .map(index => {
+            const
+              matuarity = acc.matuarities[index] || {}
+
+            return {
+              'text': numberFormat(matuarity.roi),
+              'icon': matuarity.isNext ? 'flag' : null,
+              'className': matuarity.isNext ? 'next' : null
+            }
+          })
 
       return {
         'title': {

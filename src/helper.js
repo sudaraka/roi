@@ -46,7 +46,8 @@ const
     return {
       [`${date.month()}`]: {
         roi,
-        date
+        date,
+        'isNext': date.isBetween(moment(), moment().add(period, 'days'))
       },
       ..._nextMatuatiry(next)
     }
