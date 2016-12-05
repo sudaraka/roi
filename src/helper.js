@@ -11,7 +11,7 @@
  */
 
 const
-  numberFormat = num => parseFloat(num).toLocaleString('en', {
+  numberFormat = num => (parseFloat(num) || '').toLocaleString('en', {
     'minimumFractionDigits': 2,
     'maximumFractionDigits': 2
   }),
