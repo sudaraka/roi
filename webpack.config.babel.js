@@ -13,6 +13,7 @@
 import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { optimize, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
 
@@ -76,7 +77,12 @@ export default env => {
 
     productionConfig = {
       'plugins': [
-        new optimize.UglifyJsPlugin({ 'comments': false })
+        new optimize.UglifyJsPlugin({ 'comments': false }),
+        new BundleAnalyzerPlugin({
+          'analyzerMode': 'static',
+          'openAnalyzer': false,
+          'reportFilename': '../webpack-report.html'
+        })
       ]
     },
 
