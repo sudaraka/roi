@@ -13,7 +13,7 @@
 import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { IgnorePlugin, NamedModulesPlugin } from 'webpack'
+import { optimize, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
 
 export default env => {
@@ -74,7 +74,11 @@ export default env => {
       ]
     },
 
-    productionConfig = {},
+    productionConfig = {
+      'plugins': [
+        new optimize.UglifyJsPlugin({ 'comments': false })
+      ]
+    },
 
     developmentConfig = {
       'plugins': [
