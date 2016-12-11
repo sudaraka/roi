@@ -12,12 +12,11 @@
 
 import { run } from '@cycle/xstream-run'
 import { makeDOMDriver } from '@cycle/dom'
-import { restartable } from 'cycle-restart'
 
 import main from './components/main'
 
 const
-  drivers = { 'DOM': restartable(makeDOMDriver('#app'), { 'pauseSinksWhileReplaying': false }) }
+  drivers = { 'DOM': makeDOMDriver('#app') }
 
 run(main, drivers)
 
