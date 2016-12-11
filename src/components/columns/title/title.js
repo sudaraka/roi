@@ -13,8 +13,8 @@
 import xs from 'xstream'
 import moment from 'moment'
 
-import component from '../../helper'
-import column from '../base'
+import component from 'Component/helper'
+import column from 'Component/columns/base'
 
 export default component(() => ({
   'intent': () => {

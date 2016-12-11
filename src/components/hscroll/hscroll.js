@@ -14,8 +14,8 @@
 import xs from 'xstream'
 import { div } from '@cycle/dom'
 
-import component from '../helper'
-import accountColumn from '../columns/account'
+import component from 'Component/helper'
+import accountColumn from 'Component/columns/account'
 
 export default component(() => ({
   'intent': src => src.props.accounts,

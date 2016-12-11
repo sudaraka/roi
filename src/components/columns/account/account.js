@@ -10,9 +10,9 @@
  *
  */
 
-import component from '../../helper'
-import column from '../base'
-import { numberFormat } from '../../../helper'
+import component from 'Component/helper'
+import column from 'Component/columns/base'
+import { numberFormat } from 'App/helper'
 
 export default component(() => ({
   'intent': src => src.props.account,

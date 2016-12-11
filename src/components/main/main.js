@@ -13,13 +13,13 @@
 import xs from 'xstream'
 import { div } from '@cycle/dom'
 
-import component from '../helper'
-import column from '../columns/base'
-import titleColumn from '../columns/title'
-import hscroll from '../hscroll'
+import component from 'Component/helper'
+import column from 'Component/columns/base'
+import titleColumn from 'Component/columns/title'
+import hscroll from 'Component/hscroll'
 
-import { getAccounts } from '../../data'
-import { calculateReturns } from '../../helper'
+import { getAccounts } from 'App/data'
+import { calculateReturns } from 'App/helper'
 
 export default component(() => ({
   'intent': () => xs.of({

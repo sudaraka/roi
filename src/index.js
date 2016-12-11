@@ -13,7 +13,7 @@
 import { run } from '@cycle/xstream-run'
 import { makeDOMDriver } from '@cycle/dom'
 
-import main from './components/main'
+import main from 'Component/main'
 
 const
   drivers = { 'DOM': makeDOMDriver('#app') }

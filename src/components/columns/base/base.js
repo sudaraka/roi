@@ -13,7 +13,7 @@
 import xs from 'xstream'
 import { i, div, section, br } from '@cycle/dom'
 
-import component from '../../helper'
+import component from 'Component/helper'
 
 export default component(() => ({
   'intent': src => src.props,
