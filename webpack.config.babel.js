@@ -53,6 +53,8 @@ export default env => {
       'plugins': [
         // Exclude moment.js locale from the build
         new IgnorePlugin(/locale/, /moment$/),
+        new IgnorePlugin(/es5-ext/),
+        new IgnorePlugin(/es6-(iterator|symbol)/),
 
         new HtmlWebpackPlugin({
           'filename': 'index.html',
