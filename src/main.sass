@@ -185,6 +185,7 @@ body
         // 2nd and following rows that show numeric values
         & + div
           @extend .numeric
+          position: relative
 
           // rows 2 to 3 are specially highlighted
           &:nth-child(-n+3)
@@ -198,6 +199,36 @@ body
           i
             color: #AC92EC
             left: 0
+
+          .popover
+            background-color: rgba(0, 0, 0, .8)
+            border-radius: 3px
+            box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3)
+            color: #fff
+            font-family: 'Droid Sans'
+            white-space: nowrap
+            visibility: hidden
+            opacity: 0
+            transition: opacity .2s linear .2s
+            padding: .5rem
+            position: absolute
+            left: 4px
+            top: -28px
+            z-index: 1
+
+            &::after
+              content: '\f0d7'
+              font-family: FontAwesome
+              color: rgba(0, 0, 0, .7)
+              text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3)
+              position: absolute
+              bottom: -9px
+              left: .5rem
+
+        &:hover
+          .popover
+            visibility: visible
+            opacity: 1
 
       // rows in the 2nd and following scrollable columns
       & + section > div

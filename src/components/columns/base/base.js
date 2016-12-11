@@ -39,7 +39,8 @@ export default component(() => ({
         row.className ? `.${row.className}` : '',
         [
           ...children,
-          row.icon ? i(`.fa fa-${row.icon}`) : ''
+          row.icon ? i(`.fa fa-${row.icon}`) : '',
+          row.note ? div('.popover', row.note) : ''
         ]
       )
     })
