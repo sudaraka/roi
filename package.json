@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack -p --env.prod",
     "clean": "rm -fr dist/ webpack-report.html",
-    "server": "webpack-dev-server --env.dev --hot",
+    "start": "webpack-dev-server --env.dev --hot",
     "pretest": "eslint src/",
     "test": "exit 0;"
   },
