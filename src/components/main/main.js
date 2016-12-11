@@ -14,8 +14,8 @@ import xs from 'xstream'
 import { div } from '@cycle/dom'
 
 import component from '../helper'
-import column from '../column'
-import titleColumn from '../title-column'
+import column from '../columns/base'
+import titleColumn from '../columns/title'
 import hscroll from '../hscroll'
 
 import { getAccounts } from '../../data'

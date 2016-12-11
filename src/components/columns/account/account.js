@@ -1,5 +1,5 @@
 /**
- * src/components/title-column/title-column.js: title columns component
+ * src/components/columns/account/account.js: account column component
  *
  * Copyright 2016 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -10,9 +10,9 @@
  *
  */
 
-import component from '../helper'
-import column from '../column'
-import { numberFormat } from '../../helper'
+import component from '../../helper'
+import column from '../base'
+import { numberFormat } from '../../../helper'
 
 export default component(() => ({
   'intent': src => src.props.account,

@@ -1,5 +1,5 @@
 /**
- * src/components/column/column.js: abstract column of the table
+ * src/components/columns/base/base.js: abstract column of the table
  *
  * Copyright 2016 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -13,7 +13,7 @@
 import xs from 'xstream'
 import { i, div, section, br } from '@cycle/dom'
 
-import component from '../helper'
+import component from '../../helper'
 
 export default component(() => ({
   'intent': src => src.props,

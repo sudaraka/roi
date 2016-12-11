@@ -1,5 +1,5 @@
 /**
- * src/components/title-column/title-column.js: title columns component
+ * src/components/columns/title/title.js: title column component
  *
  * Copyright 2016 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -13,8 +13,8 @@
 import xs from 'xstream'
 import moment from 'moment'
 
-import component from '../helper'
-import column from '../column'
+import component from '../../helper'
+import column from '../base'
 
 export default component(() => ({
   'intent': () => {
