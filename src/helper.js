@@ -13,7 +13,7 @@
 import moment from 'moment'
 
 const
-  numberFormat = num => (parseFloat(num) || '').toLocaleString('en', {
+  numberFormat = (num, empty = '') => (parseFloat(num) || empty).toLocaleString('en', {
     'minimumFractionDigits': 2,
     'maximumFractionDigits': 2
   }),

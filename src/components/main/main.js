@@ -14,19 +14,15 @@ import xs from 'xstream'
 import { div } from '@cycle/dom'
 
 import component from 'Component/helper'
-import column from 'Component/columns/base'
 import titleColumn from 'Component/columns/title'
+import totalColumn from 'Component/columns/total'
 import hscroll from 'Component/hscroll'
 
 import { getAccounts } from 'App/data'
 import { calculateReturns } from 'App/helper'
 
 export default component(() => ({
-  'intent': () => xs.of({
-    'accounts': xs.fromPromise(getAccounts()),
-
-    'totalColumn': xs.of({ 'title': { 'text': 'Total' } })
-  }),
+  'intent': () => xs.of({ 'accounts': xs.fromPromise(getAccounts()) }),
 
   'model': state$ => state$.map(state => ({
     ...state,
@@ -41,7 +37,7 @@ export default component(() => ({
     .map(state => xs.combine(
       titleColumn().DOM,
       hscroll({ 'props': { 'accounts': state.accounts } }).DOM,
-      column({ 'props': state.totalColumn }).DOM
+      totalColumn({ 'props': { 'accounts': state.accounts } }).DOM
     ))
     .flatten()
     .map(table => div('.container', table))
