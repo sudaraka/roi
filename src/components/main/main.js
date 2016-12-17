@@ -35,9 +35,9 @@ export default component(() => ({
 
   'view': state$ => state$
     .map(state => xs.combine(
-      titleColumn().DOM,
-      hscroll({ 'props': { 'accounts': state.accounts } }).DOM,
-      totalColumn({ 'props': { 'accounts': state.accounts } }).DOM
+      titleColumn(state).DOM,
+      hscroll(state).DOM,
+      totalColumn(state).DOM
     ))
     .flatten()
     .map(table => div('.container', table))

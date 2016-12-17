@@ -15,7 +15,7 @@ import column from 'Component/columns/base'
 import { numberFormat } from 'App/helper'
 
 export default component(() => ({
-  'intent': src => src.props.account,
+  'intent': src => src.account,
 
   'model': account$ => account$
     .map(acc => {

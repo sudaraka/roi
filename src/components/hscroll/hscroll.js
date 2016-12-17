@@ -18,10 +18,10 @@ import component from 'Component/helper'
 import accountColumn from 'Component/columns/account'
 
 export default component(() => ({
-  'intent': src => src.props.accounts,
+  'intent': src => src.accounts,
 
   'view': accounts$ => accounts$
-    .map(acc => accountColumn({ 'props': { 'account': xs.of(acc) } }).DOM)
+    .map(acc => accountColumn({ 'account': xs.of(acc) }).DOM)
     .flatten()
     .fold((acc, col$) => [ ...acc, col$ ], [])
     .last()

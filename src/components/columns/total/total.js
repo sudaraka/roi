@@ -15,7 +15,7 @@ import column from 'Component/columns/base'
 import { numberFormat } from 'App/helper'
 
 export default component(() => ({
-  'intent': src => src.props.accounts,
+  'intent': src => src.accounts,
 
   'model': accounts$ => accounts$
     .fold((obj, acc) => ({
