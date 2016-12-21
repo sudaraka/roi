@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/sudaraka/roi#readme",
   "devDependencies": {
-    "@cycle/dom": "^14.2.0",
-    "@cycle/xstream-run": "^4.1.0",
+    "@cycle/dom": "^14.3.0",
+    "@cycle/xstream-run": "^4.2.0",
     "@sudaraka/eslint-config-default": "^1.1.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -43,14 +43,14 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
     "moment": "^2.17.1",
-    "node-sass": "^4.0.0",
+    "node-sass": "^4.1.1",
     "pouchdb": "^6.1.0",
-    "sass-loader": "^4.1.0",
+    "sass-loader": "^4.1.1",
     "uglify-js": "github:mishoo/UglifyJS2#harmony",
     "webpack": "^2.2.0-rc.1",
-    "webpack-bundle-analyzer": "^2.1.1",
+    "webpack-bundle-analyzer": "^2.2.0",
     "webpack-dev-server": "^2.2.0-rc.0",
-    "webpack-merge": "^1.1.1",
+    "webpack-merge": "^1.1.2",
     "xstream": "^9.2.0"
   }
 }
