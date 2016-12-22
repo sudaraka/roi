@@ -10,7 +10,6 @@
  *
  */
 
-import xs from 'xstream'
 import { i, div, section, br } from '@cycle/dom'
 
 import component from 'Component/helper'
@@ -19,16 +18,15 @@ export default component(() => ({
   'intent': src => src.props,
 
   'model': props$ => props$
-    .map(props => xs.of(...[
+    .map(props => [
       props.title,
       ...(props.header || Array(3)),
       ...(props.months || Array(12)),
       props.total || ''
-    ]))
-    .flatten(),
+    ]),
 
   'view': rows$ => rows$
-    .map((row = { 'text': '' }) => {
+    .map(rows => rows.map((row = { 'text': '' }) => {
       const
         children = (row.text || '')
           .toString()
@@ -40,11 +38,10 @@ export default component(() => ({
         [
           ...children,
           row.icon ? i(`.fa fa-${row.icon}`) : '',
-          row.note ? div('.popover', row.note) : ''
+          row.note ? div('.popover', row.note) : '',
+          row.dialog || ''
         ]
       )
-    })
-    .fold((acc, row$) => [ ...acc, row$ ], [])
-    .last()
+    }))
     .map(rows => section(rows))
 }))
