@@ -10,31 +10,35 @@
  *
  */
 
-import xs from 'xstream'
 import moment from 'moment'
+import { div } from '@cycle/dom'
 
 import component from 'Component/helper'
 import column from 'Component/columns/base'
 
 export default component(() => ({
-  'intent': () => {
+  'model': src => {
     const
       months = [ ...Array(12).keys() ]
         .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
 
-    return xs.of({
-      'title': {
-        'text': 'Account',
-        'className': 'action',
-        'icon': 'plus'
-      },
-      'header': [
-        { 'text': 'Amount' },
-        { 'text': 'Interest Rate' },
-        { 'text': 'Revenue / Month' }
-      ],
-      months
-    })
+    return src.DOM.select('.action-add').events('click')
+      // Simply toggle the current state
+      .fold(ev => !ev, false)
+      .map(toggle => ({
+        'title': {
+          'text': 'Account',
+          'className': 'action action-add',
+          'icon': 'plus',
+          'dialog': toggle ? div('Popover dialog') : null
+        },
+        'header': [
+          { 'text': 'Amount' },
+          { 'text': 'Interest Rate' },
+          { 'text': 'Revenue / Month' }
+        ],
+        months
+      }))
   },
 
   'view': state$ => column({ 'props': state$ }).DOM

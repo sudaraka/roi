@@ -22,7 +22,10 @@ import { getAccounts } from 'App/data'
 import { calculateReturns } from 'App/helper'
 
 export default component(() => ({
-  'intent': () => xs.of({ 'accounts': xs.fromPromise(getAccounts()) }),
+  'intent': src => xs.of({
+    ...src,
+    'accounts': xs.fromPromise(getAccounts())
+  }),
 
   'model': state$ => state$.map(state => ({
     ...state,
