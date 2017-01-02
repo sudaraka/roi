@@ -101,6 +101,8 @@ export default env => {
     },
 
     developmentConfig = {
+      'performance': { 'hints': false },
+
       'plugins': [
         new NamedModulesPlugin()
       ],
@@ -109,7 +111,10 @@ export default env => {
 
       'devServer': {
         'host': '127.0.0.1',
-        'port': 5000
+        'port': 5000,
+
+        'clientLogLevel': 'warning',
+        'stats': 'errors-only'
       }
     }
 
