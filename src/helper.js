@@ -20,11 +20,15 @@ const
     investedDate = investedDate.toDate ? investedDate.toDate() : new Date(investedDate)
 
     const
-      roi = amount * interestRate / 100 / 365 * period,
-      periodInMilliseconds = period * 24 * 60 * 60 * 1000,
+      DAYS_PER_YEAR = 365,
+      MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000,
+      MILLISECONDS_PER_YEAR = DAYS_PER_YEAR * MILLISECONDS_PER_DAY,
+
+      roi = amount * interestRate / 100 / DAYS_PER_YEAR * period,
+      periodInMilliseconds = period * MILLISECONDS_PER_DAY,
       date = investedDate.getTime() + periodInMilliseconds,
       now = (new Date()).getTime(),
-      yearFromNow = now + (365 * 24 * 60 * 60 * 1000),
+      yearFromNow = now + MILLISECONDS_PER_YEAR,
       periodFromNow = now + periodInMilliseconds,
       next = {
         amount,
