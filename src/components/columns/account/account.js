@@ -27,7 +27,7 @@ export default component(() => ({
 
             return {
               'text': numberFormat(matuarity.roi),
-              'note': matuarity.isNext ? matuarity.date.format('dddd, MMMM Do, YYYY') : null,
+              'note': matuarity.isNext ? matuarity.date.toLocaleFormat('%A, %B %d, %Y') : null,
               'icon': matuarity.isNext ? 'flag' : null,
               'className': matuarity.isNext ? 'next' : null
             }

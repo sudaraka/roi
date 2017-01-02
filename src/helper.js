@@ -10,8 +10,6 @@
  *
  */
 
-import moment from 'moment'
-
 const
   numberFormat = (num, empty = '') => (parseFloat(num) || empty).toLocaleString('en', {
     'minimumFractionDigits': 2,
@@ -19,24 +17,30 @@ const
   }),
 
   _nextMatuatiry = ({ amount, interestRate, investedDate, period }) => {
+    investedDate = investedDate.toDate ? investedDate.toDate() : new Date(investedDate)
+
     const
       roi = amount * interestRate / 100 / 365 * period,
-      date = moment(investedDate).add(period, 'days'),
+      periodInMilliseconds = period * 24 * 60 * 60 * 1000,
+      date = investedDate.getTime() + periodInMilliseconds,
+      now = (new Date()).getTime(),
+      yearFromNow = now + (365 * 24 * 60 * 60 * 1000),
+      periodFromNow = now + periodInMilliseconds,
       next = {
         amount,
         interestRate,
         period,
-        'investedDate': date
+        'investedDate': new Date(date)
       }
 
-    if(date.isAfter(moment().add(1, 'year'))) {
+    if(date >= yearFromNow) {
       // Resulting date is more than 1 year after today
       // Terminal condition!
 
       return {}
     }
 
-    if(date.isBefore(moment())) {
+    if(date <= now) {
       // Resulting date has passed
       // Continue calculation without taking this occurrence in to account
 
@@ -44,10 +48,10 @@ const
     }
 
     return {
-      [`${date.month()}`]: {
+      [`${new Date(date).getMonth()}`]: {
         roi,
-        date,
-        'isNext': date.isBetween(moment(), moment().add(period, 'days'))
+        'date': new Date(date),
+        'isNext': date >= now && date <= periodFromNow
       },
       ..._nextMatuatiry(next)
     }

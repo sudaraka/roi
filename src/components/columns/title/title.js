@@ -10,7 +10,6 @@
  *
  */
 
-import moment from 'moment'
 import { div } from '@cycle/dom'
 
 import component from 'Component/helper'
@@ -20,7 +19,7 @@ export default component(() => ({
   'model': src => {
     const
       months = [ ...Array(12).keys() ]
-        .map(index => ({ 'text': moment(`16-${index + 1}-1`, 'YY-M-D').format('MMMM') }))
+        .map(index => ({ 'text': new Date(`2017-${index + 1}-1`).toLocaleFormat('%B') }))
 
     return src.DOM.select('.action-add').events('click')
       // Simply toggle the current state
