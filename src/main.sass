@@ -34,9 +34,10 @@
     padding: .5rem
     visibility: hidden
 
-  // show icon on hover
-  &:hover i
-    visibility: visible
+  // show icon on hover or when parent is marked as active
+  &:hover, &.active
+    i
+      visibility: visible
 
 // Helper classes --------------------------------------------------------------
 
@@ -96,6 +97,11 @@ body
           padding: 1rem
           right: 0
 
+        // icon status change when in active parent
+        &.active i
+          color: #AA8E69
+
+        // drop-down  container that open under column title
         > .dropdown
           background-color: #F5F7FA
           border: 1px solid rgba(60, 59, 61, .3)

@@ -27,8 +27,8 @@ export default component(() => ({
       .map(toggle => ({
         'title': {
           'text': 'Account',
-          'className': 'action action-add',
-          'icon': 'plus',
+          'className': `action action-add ${toggle ? 'active' : ''}`,
+          'icon': toggle ? 'times' : 'plus',
           'dialog': toggle ? div('.dropdown', 'Drop-down dialog') : null
         },
         'header': [
