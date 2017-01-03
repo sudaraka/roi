@@ -29,7 +29,7 @@ export default component(() => ({
           'text': 'Account',
           'className': 'action action-add',
           'icon': 'plus',
-          'dialog': toggle ? div('Popover dialog') : null
+          'dialog': toggle ? div('.dropdown', 'Drop-down dialog') : null
         },
         'header': [
           { 'text': 'Amount' },
