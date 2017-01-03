@@ -10,7 +10,7 @@
  *
  */
 
-import { div } from '@cycle/dom'
+import { html } from 'snabbdom-jsx'
 
 import component from 'Component/helper'
 import column from 'Component/columns/base'
@@ -29,7 +29,7 @@ export default component(() => ({
           'text': 'Account',
           'className': `action action-add ${toggle ? 'active' : ''}`,
           'icon': toggle ? 'times' : 'plus',
-          'dialog': toggle ? div('.dropdown', 'Drop-down dialog') : null
+          'dialog': toggle ? <div className="dropdown">Drop-down dialog</div> : null
         },
         'header': [
           { 'text': 'Amount' },
