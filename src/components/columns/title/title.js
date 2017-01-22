@@ -11,9 +11,37 @@
  */
 
 import { html } from 'snabbdom-jsx'
+import { div, label, input } from '@cycle/dom'
 
 import component from 'Component/helper'
 import column from 'Component/columns/base'
+
+const
+  form = () => (
+    <div className="dropdown form">
+
+      <div className="input-group">
+        <label>Account Type</label>
+        <input type="text" id="acc_type" placeholder="T-Bill, FD or Savings" />
+      </div>
+
+      <div className="input-group">
+        <label>Account Number</label>
+        <input type="text" id="acc_number" />
+      </div>
+
+      <div className="input-group">
+        <label>Invested Amount</label>
+        <input type="number" id="acc_invested" />
+      </div>
+
+      <div className="input-group">
+        <label>Interest Rate</label>
+        <input type="number" id="acc_rate" />
+      </div>
+
+    </div>
+  )
 
 export default component(() => ({
   'model': src => {
@@ -29,7 +57,7 @@ export default component(() => ({
           'text': 'Account',
           'className': `action action-add ${toggle ? 'active' : ''}`,
           'icon': toggle ? 'times' : 'plus',
-          'dialog': toggle ? <div className="dropdown">Drop-down dialog</div> : null
+          'dialog': toggle ? form() : null
         },
         'header': [
           { 'text': 'Amount' },
