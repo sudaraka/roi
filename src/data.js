@@ -15,6 +15,22 @@ import PouchDB from 'pouchdb'
 const
   dbAcc = new PouchDB('roi-accounts'),
 
+  createAccount = ({ type, number, amount, interestRate, investedDate, period = 91 }) => {
+    dbAcc.put({
+      '_id': number.toString(),
+      type,
+      number,
+      'amount': parseFloat(amount),
+      'interestRate': parseFloat(interestRate),
+      investedDate,
+      'period': period || 91
+    })
+    .then(result => console.log(result))
+    .catch(err => {
+      console.error(err)
+    })
+  },
+
   getAccounts = () => dbAcc.allDocs({ 'include_docs': true })
     .catch(err => {
       console.error(err)
@@ -23,4 +39,4 @@ const
     })
     .then(result => [ ...result.rows.map(record => record.doc) ])
 
-export { getAccounts }
+export { getAccounts, createAccount }
