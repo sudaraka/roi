@@ -39,4 +39,36 @@ const
     })
     .then(result => [ ...result.rows.map(record => record.doc) ])
 
+// createAccount({
+//   'type': 'FD',
+//   'number': new Date().getTime(),
+//   'amount': parseInt(Math.random() * 100000000, 10) / 100,
+//   'interestRate': parseInt(Math.random() * 1000, 10) / 10,
+//   'investedDate': '2016-12-22 00:00:00'
+// })
+// createAccount({
+//   'type': 'FD',
+//   'number': new Date().getTime(),
+//   'amount': 500000,
+//   'interestRate': 10,
+//   'investedDate': '2016-11-08 00:00:00',
+//   'period': 90
+// })
+// createAccount({
+//   'type': 'FD',
+//   'number': new Date().getTime(),
+//   'amount': 500000,
+//   'interestRate': 9,
+//   'investedDate': '2016-06-17 00:00:00',
+//   'period': 90
+// })
+// createAccount({
+//   'type': 'T-Bill',
+//   'number': new Date().getTime(),
+//   'amount': 1001816.76,
+//   'interestRate': 8.2,
+//   'investedDate': '2016-12-16 00:00:00'
+// })
+// dbAcc.destroy()
+
 export { getAccounts, createAccount }
