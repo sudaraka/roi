@@ -28,30 +28,5 @@
   "bugs": {
     "url": "https://github.com/sudaraka/roi/issues"
   },
-  "homepage": "https://github.com/sudaraka/roi#readme",
-  "devDependencies": {
-    "@cycle/dom": "^14.3.0",
-    "@cycle/xstream-run": "^4.2.0",
-    "@sudaraka/eslint-config-default": "^1.4.0",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.22.0",
-    "babel-plugin-transform-react-jsx": "^6.22.0",
-    "css-loader": "^0.26.1",
-    "eslint": "^3.14.0",
-    "extract-text-webpack-plugin": "^2.0.0-beta.5",
-    "file-loader": "^0.9.0",
-    "html-webpack-plugin": "^2.26.0",
-    "node-sass": "^4.3.0",
-    "pouchdb": "^6.1.1",
-    "sass-loader": "^4.1.1",
-    "snabbdom-jsx": "^0.3.1",
-    "uglify-js": "github:mishoo/UglifyJS2#harmony",
-    "webpack": "^2.2.0",
-    "webpack-bundle-analyzer": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
-    "webpack-merge": "^2.4.0",
-    "xstream": "^9.2.0"
-  }
+  "homepage": "https://github.com/sudaraka/roi#readme"
 }

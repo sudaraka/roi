@@ -37,7 +37,6 @@ export default env => {
 
       'resolve': {
         'alias': {
-          'App': resolve('src/'),
           'Component': resolve('src/components/')
         }
       },
