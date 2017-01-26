@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/sudaraka/roi/issues"
   },
-  "homepage": "https://github.com/sudaraka/roi#readme"
+  "homepage": "https://github.com/sudaraka/roi#readme",
+  "devDependencies": {
+    "@sudaraka/eslint-config-default": "^1.4.0"
+  }
 }
