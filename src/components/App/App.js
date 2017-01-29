@@ -12,4 +12,10 @@
 
 import { h } from 'preact'
 
-export default () => <div>Accounts table goes here</div>
+import Title from 'Column/Title'
+
+export default () => (
+  <div className='container'>
+    <Title />
+  </div>
+)
