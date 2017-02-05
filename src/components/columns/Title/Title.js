@@ -11,13 +11,14 @@
  */
 
 import { h } from 'preact'
+import 'datejs'
 
 import Base from 'Column/Base'
 
 export default () => {
   const
     months = [ ...Array(12) ].map(
-      (_, index) => ({ 'text': new Date(`2017-${index + 1}-1`).toLocaleFormat('%B') })
+      (_, index) => ({ 'text': (new Date(`2017-${index + 1}-1`)).format('%B') })
     ),
 
     columnData = {
