@@ -1,5 +1,6 @@
 /**
- * src/components/App/App.js: main application component
+ * src/components/HScroll/HScroll.js: Horizontally scrollable middle area of the
+ * table.
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -12,14 +13,4 @@
 
 import { h } from 'preact'
 
-import Title from 'Column/Title'
-import Base from 'Column/Base'
-import HScroll from 'Component/HScroll'
-
-export default () => (
-  <div className='container'>
-    <Title />
-    <HScroll />
-    <Base />
-  </div>
-)
+export default () => <div className='hscroll'>&nbsp;</div>
