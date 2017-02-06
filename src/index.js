@@ -11,6 +11,9 @@
  */
 
 import { h, render } from 'preact'
+import { Provider } from 'preact-redux'
+
+import store from 'Data/store'
 
 let
   rootElement
@@ -20,11 +23,18 @@ const
     const
       { 'default': App } = require('Component/App')  // eslint-disable-line global-require
 
-    rootElement = render(<App />, document.querySelector('#app'), rootElement)
+    rootElement = render(
+      <Provider store={ store }>
+        <App />
+      </Provider>,
+      document.querySelector('#app'),
+      rootElement
+    )
   }
 
 init()
 
 if(module.hot) {
   module.hot.accept('Component/App', init)
+  module.hot.accept('Data/store', init)
 }

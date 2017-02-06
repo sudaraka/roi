@@ -1,6 +1,5 @@
 /**
- * src/components/HScroll/HScroll.js: Horizontally scrollable middle area of the
- * table.
+ * src/data/store.js: Redux data store
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -11,10 +10,16 @@
  *
  */
 
-import { h } from 'preact'
-import { connect } from 'preact-redux'
+import { createStore, applyMiddleware } from 'redux'
+import createLogger from 'redux-logger'
+
+import reducer from 'Data/reducers'
 
 const
-  HScroll = () => <div className='hscroll'>&nbsp;xxx</div>
+  logger = createLogger()
 
-export default connect(state => ({ ...state }))(HScroll)
+export default createStore(
+  reducer,
+  {},
+  applyMiddleware(logger)
+)

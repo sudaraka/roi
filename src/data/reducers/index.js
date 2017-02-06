@@ -1,6 +1,5 @@
 /**
- * src/components/HScroll/HScroll.js: Horizontally scrollable middle area of the
- * table.
+ * src/data/reducers/index.js: combined reducers
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -11,10 +10,6 @@
  *
  */
 
-import { h } from 'preact'
-import { connect } from 'preact-redux'
+import { combineReducers } from 'redux'
 
-const
-  HScroll = () => <div className='hscroll'>&nbsp;xxx</div>
-
-export default connect(state => ({ ...state }))(HScroll)
+export default combineReducers({ 'accounts': _ => _ || [] })
