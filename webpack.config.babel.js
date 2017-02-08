@@ -14,7 +14,7 @@ import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import { optimize, IgnorePlugin, NamedModulesPlugin } from 'webpack'
+import { optimize, DefinePlugin, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
 
 export default env => {
@@ -39,7 +39,8 @@ export default env => {
         'alias': {
           'Component': resolve('src/components/'),
           'Column': resolve('src/components/columns/'),
-          'Data': resolve('src/data/')
+          'Data': resolve('src/data/'),
+          'Reducer': resolve('src/data/reducers/')
         }
       },
 
@@ -92,6 +93,7 @@ export default env => {
 
     productionConfig = {
       'plugins': [
+        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }),
         new optimize.UglifyJsPlugin({ 'comments': false }),
         new BundleAnalyzerPlugin({
           'analyzerMode': 'static',
@@ -105,6 +107,7 @@ export default env => {
       'performance': { 'hints': false },
 
       'plugins': [
+        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('development') } }),
         new NamedModulesPlugin()
       ],
 

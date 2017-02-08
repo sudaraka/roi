@@ -11,15 +11,22 @@
  */
 
 import { createStore, applyMiddleware } from 'redux'
-import createLogger from 'redux-logger'
+import reducer from 'Reducer'
 
-import reducer from 'Data/reducers'
+let
+  middleware = []
 
-const
-  logger = createLogger()
+if('production' !== process.env.NODE_ENV) {  // eslint-disable-line no-process-env
+  const
+    createLogger = require('redux-logger')  // eslint-disable-line global-require
 
-export default createStore(
-  reducer,
-  {},
-  applyMiddleware(logger)
-)
+  middleware = [
+    ...middleware,
+    createLogger({
+      'timestamp': false,
+      'duration': true
+    })
+  ]
+}
+
+export default createStore(reducer, applyMiddleware(...middleware))
