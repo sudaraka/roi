@@ -11,14 +11,14 @@
  */
 
 import { h } from 'preact'
-import 'datejs'
+import moment from 'moment'
 
 import Base from 'Column/Base'
 
 export default () => {
   const
     months = [ ...Array(12) ].map(
-      (_, index) => ({ 'text': (new Date(`2017-${index + 1}-1`)).format('%B') })
+      (_, index) => ({ 'text': moment(`17-${index + 1}-1`, 'YY-M-D').format('MMMM') })
     ),
 
     columnData = {
