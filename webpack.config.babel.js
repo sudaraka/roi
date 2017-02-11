@@ -38,8 +38,9 @@ export default env => {
       'resolve': {
         'alias': {
           'Action': resolve('src/actions/'),
-          'Component': resolve('src/components/'),
+          'App': resolve('src/'),
           'Column': resolve('src/components/columns/'),
+          'Component': resolve('src/components/'),
           'Data': resolve('src/data/'),
           'Reducer': resolve('src/data/reducers/')
         }
