@@ -12,9 +12,5 @@
  */
 
 import { h } from 'preact'
-import { connect } from 'preact-redux'
 
-const
-  HScroll = () => <div className='hscroll'>&nbsp;xxx</div>
-
-export default connect(state => ({ ...state }))(HScroll)
+export default () => <div className='hscroll'>&nbsp;xxx</div>
