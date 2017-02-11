@@ -13,11 +13,11 @@
 
 import { h } from 'preact'
 
-import Base from 'Column/Base'
+import Account from 'Column/Account'
 
 export default ({ accounts }) => {
   const
-    columns = accounts.map(acc => <Base key={ acc.number } title={ { 'text': `${acc.type}|${acc.number}` } } />)
+    columns = accounts.map(acc => <Account key={ acc.number } { ...acc } />)
 
   return (
     <div className='hscroll'>
