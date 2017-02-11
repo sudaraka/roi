@@ -11,10 +11,12 @@
  */
 
 import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+
 import reducer from 'Reducer'
 
 let
-  middleware = []
+  middleware = [ thunk ]
 
 if('production' !== process.env.NODE_ENV) {  // eslint-disable-line no-process-env
   const
