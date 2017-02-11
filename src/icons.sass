@@ -11,6 +11,15 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
+.fa-pulse
+  animation: fa-spin 1s infinite steps(8);
+
+@keyframes fa-spin
+  0%
+    transform: rotate(0deg);
+  100%
+    transform: rotate(359deg);
+
 .fa-flag:before
   content: "\f024"
 
@@ -22,3 +31,6 @@
 
 .fa-times:before
   content: "\f00d"
+
+.fa-spinner:before
+  content: "\f110"
