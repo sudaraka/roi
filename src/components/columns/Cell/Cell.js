@@ -21,9 +21,9 @@ export default ({ text, className, icon, note }) => {
         .split('|')
         .reduce((arr, word) => [ ...arr, word, <br /> ], []),  // eslint-disable-line react/jsx-key
 
-      icon ? <i className={ `.fa fa-${icon}` } /> : null,
+      icon ? <i className={ `fa fa-${icon}` } /> : null,
 
-      note ? <div className='.popover'>{ note }</div> : null
+      note ? <div className='popover'>{ note }</div> : null
     ]
 
   return <div className={ className }>{ children }</div>
