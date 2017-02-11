@@ -1,5 +1,5 @@
 /**
- * src/data/reducers/index.js: combined reducers
+ * src/actions/types.js: action type constants
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -10,8 +10,5 @@
  *
  */
 
-import { combineReducers } from 'redux'
-
-import accounts from 'Reducer/accounts'
-
-export default combineReducers({ accounts })
+export const
+  LOAD_ACCOUNTS = 'LOAD_ACCOUNTS'

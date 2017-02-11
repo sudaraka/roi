@@ -1,5 +1,5 @@
 /**
- * src/data/reducers/index.js: combined reducers
+ * src/actions/accounts.js: account related actions
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -10,8 +10,9 @@
  *
  */
 
-import { combineReducers } from 'redux'
+import { LOAD_ACCOUNTS } from 'Action/types'
 
-import accounts from 'Reducer/accounts'
-
-export default combineReducers({ accounts })
+export const
+  loadAccounts = () => dispatch => {
+    setTimeout(() => dispatch({ 'type': LOAD_ACCOUNTS }), 3000)
+  }

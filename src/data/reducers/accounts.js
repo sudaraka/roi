@@ -1,5 +1,5 @@
 /**
- * src/data/reducers/index.js: combined reducers
+ * src/data/reducers/accounts.js: reducer for accounts
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -10,8 +10,17 @@
  *
  */
 
-import { combineReducers } from 'redux'
+import { LOAD_ACCOUNTS } from 'Action/types'
 
-import accounts from 'Reducer/accounts'
+const
+  INITIAL_STATE = null
 
-export default combineReducers({ accounts })
+export default (state = INITIAL_STATE, action) => {
+  if(LOAD_ACCOUNTS === action.type) {
+    return [
+      ...(state || [])
+    ]
+  }
+
+  return state
+}
