@@ -11,8 +11,13 @@
  */
 
 import { LOAD_ACCOUNTS } from 'Action/types'
+import { getAccounts } from 'Data'
 
 export const
   loadAccounts = () => dispatch => {
-    setTimeout(() => dispatch({ 'type': LOAD_ACCOUNTS }), 3000)
+    getAccounts()
+      .then(accounts => dispatch({
+        'type': LOAD_ACCOUNTS,
+        accounts
+      }))
   }
