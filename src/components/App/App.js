@@ -16,16 +16,28 @@ import { connect } from 'preact-redux'
 import Title from 'Column/Title'
 import Base from 'Column/Base'
 import HScroll from 'Component/HScroll'
+import Loading from 'Component/Loading'
+import { loadAccounts } from 'Action/accounts'
 
 const
-  App = () => (
-    <div className='container'>
-      <Title />
-      <HScroll />
-      <Base />
-    </div>
-  ),
+  App = ({ accounts, ...props }) => {
+    let
+      children = <Loading />
+
+    if(Array.isArray(accounts)) {
+      children = [
+        <Title key='title-column' />,
+        <HScroll key='scroll-area' accounts={ accounts } />,
+        <Base key='total-column' />
+      ]
+    }
+    else {
+      props.loadAccounts()
+    }
+
+    return (<div className='container'>{ children }</div>)
+  },
 
   state2Props = state => ({ 'accounts': state.accounts })
 
-export default connect(state2Props)(App)
+export default connect(state2Props, { loadAccounts })(App)
