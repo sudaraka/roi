@@ -14,7 +14,7 @@ import { h } from 'preact'
 import { connect } from 'preact-redux'
 
 import Title from 'Column/Title'
-import Base from 'Column/Base'
+import Total from 'Column/Total'
 import HScroll from 'Component/HScroll'
 import Loading from 'Component/Loading'
 import { loadAccounts } from 'Action/accounts'
@@ -28,7 +28,7 @@ const
       children = [
         <Title key='title-column' />,
         <HScroll key='scroll-area' accounts={ accounts } />,
-        <Base key='total-column' />
+        <Total key='total-column' accounts={ accounts } />
       ]
     }
     else {
