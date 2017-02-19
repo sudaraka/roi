@@ -12,6 +12,7 @@
 
 import { h, render } from 'preact'
 import { Provider } from 'preact-redux'
+import { Router } from 'preact-router'
 
 import store from 'Data/store'
 
@@ -25,7 +26,9 @@ const
 
     rootElement = render(
       <Provider store={ store }>
-        <App />
+        <Router>
+          <App path='/' />
+        </Router>
       </Provider>,
       document.querySelector('#app'),
       rootElement
