@@ -11,6 +11,7 @@
  */
 
 import { h } from 'preact'
+import { route } from 'preact-router'
 import moment from 'moment'
 
 import Base from 'Column/Base'
@@ -21,11 +22,16 @@ export default () => {
       (_, index) => ({ 'text': moment(`17-${index + 1}-1`, 'YY-M-D').format('MMMM') })
     ),
 
+    handleClick = () => {
+      route('/account')
+    },
+
     columnData = {
       'title': {
         'text': 'Account',
         'className': 'action action-add',
-        'icon': 'plus'
+        'icon': 'plus',
+        'onCellClick': handleClick
       },
       'header': [
         { 'text': 'Amount' },

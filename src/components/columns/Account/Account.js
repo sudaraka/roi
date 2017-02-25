@@ -11,6 +11,7 @@
  */
 
 import { h } from 'preact'
+import { route } from 'preact-router'
 import moment from 'moment'
 
 import { numberFormat } from 'App/helper'
@@ -32,11 +33,16 @@ export default ({ type, number, amount, interestRate, monthlyRevenue, matuaritie
       }
     ),
 
+    handleClick = accountNumber => () => {
+      route(`/account/${accountNumber}`)
+    },
+
     columnData = {
       'title': {
         'text': `${type}|${number}`,
         'className': 'action',
-        'icon': 'pencil'
+        'icon': 'pencil',
+        'onCellClick': handleClick(number)
       },
       'header': [
         { 'text': numberFormat(amount) },
