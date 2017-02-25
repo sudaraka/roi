@@ -28,6 +28,12 @@ const
       <Provider store={ store }>
         <Router>
           <App path='/' />
+          <App path='/account'>
+            <p>...add form...</p>
+          </App>
+          <App path='/account/:number'>
+            <p>...edit form...</p>
+          </App>
         </Router>
       </Provider>,
       document.querySelector('#app'),

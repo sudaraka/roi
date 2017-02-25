@@ -20,12 +20,13 @@ import Loading from 'Component/Loading'
 import { loadAccounts } from 'Action/accounts'
 
 const
-  App = ({ accounts, ...props }) => {
+  App = ({ accounts, children, ...props }) => {
     let
-      children = <Loading />
+      content = <Loading />
 
     if(Array.isArray(accounts)) {
-      children = [
+      content = [
+        ...children,
         <Title key='title-column' />,
         <HScroll key='scroll-area' accounts={ accounts } />,
         <Total key='total-column' accounts={ accounts } />
@@ -35,7 +36,7 @@ const
       props.loadAccounts()
     }
 
-    return (<div className='container'>{ children }</div>)
+    return (<div className='container'>{ content }</div>)
   },
 
   state2Props = state => ({ 'accounts': state.accounts })
