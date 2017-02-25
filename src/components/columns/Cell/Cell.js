@@ -13,7 +13,7 @@
 
 import { h } from 'preact'
 
-export default ({ text, className, icon, note }) => {
+export default ({ text, className, icon, note, onCellClick }) => {
   const
     children = [
       (text || '')
@@ -26,5 +26,5 @@ export default ({ text, className, icon, note }) => {
       note ? <div className='popover'>{ note }</div> : null
     ]
 
-  return <div className={ className }>{ children }</div>
+  return <div className={ className } onClick={ onCellClick }>{ children }</div>
 }
