@@ -1,5 +1,5 @@
 /**
- * src/data/reducers/index.js: combined reducers
+ * src/actions/forms.js: form related actions
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
@@ -10,12 +10,10 @@
  *
  */
 
-import { combineReducers } from 'redux'
+import { SET_FORM_ACCOUNT } from 'Action/types'
 
-import accounts from 'Reducer/accounts'
-import forms from 'Reducer/forms'
-
-export default combineReducers({
-  accounts,
-  forms
-})
+export const
+  setEditAccount = account => ({
+    'type': SET_FORM_ACCOUNT,
+    'payload': account
+  })
