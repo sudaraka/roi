@@ -20,6 +20,6 @@ export const
       .then(accounts => accounts.map(calculateReturns))
       .then(accounts => dispatch({
         'type': LOAD_ACCOUNTS,
-        accounts
+        'payload': accounts
       }))
   }
