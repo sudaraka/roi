@@ -42,6 +42,7 @@ export default env => {
           'Column': resolve('src/components/columns/'),
           'Component': resolve('src/components/'),
           'Data': resolve('src/data/'),
+          'Form': resolve('src/components/forms/'),
           'Reducer': resolve('src/data/reducers/')
         }
       },

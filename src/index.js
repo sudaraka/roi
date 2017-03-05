@@ -15,6 +15,7 @@ import { Provider } from 'preact-redux'
 import { Router } from 'preact-router'
 
 import store from 'Data/store'
+import AccountForm from 'Form/Account'
 
 let
   rootElement
@@ -29,10 +30,10 @@ const
         <Router>
           <App path='/' />
           <App path='/account'>
-            <p>...add form...</p>
+            <AccountForm />
           </App>
           <App path='/account/:editAccount'>
-            <p>...edit form...</p>
+            <AccountForm />
           </App>
         </Router>
       </Provider>,
