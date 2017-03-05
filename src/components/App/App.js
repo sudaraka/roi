@@ -18,9 +18,10 @@ import Total from 'Column/Total'
 import HScroll from 'Component/HScroll'
 import Loading from 'Component/Loading'
 import { loadAccounts } from 'Action/accounts'
+import { setEditAccount } from 'Action/forms'
 
 const
-  App = ({ accounts, children, ...props }) => {
+  App = ({ accounts, children, editAccount, ...props }) => {
     let
       content = <Loading />
 
@@ -31,6 +32,14 @@ const
         <HScroll key='scroll-area' accounts={ accounts } />,
         <Total key='total-column' accounts={ accounts } />
       ]
+
+      if(editAccount) {
+        props.setEditAccount(
+          accounts
+            .filter(acc => acc.number === parseInt(editAccount, 10))
+            .pop()
+        )
+      }
     }
     else {
       props.loadAccounts()
@@ -41,4 +50,10 @@ const
 
   state2Props = state => ({ 'accounts': state.accounts })
 
-export default connect(state2Props, { loadAccounts })(App)
+export default connect(
+  state2Props,
+  {
+    loadAccounts,
+    setEditAccount
+  }
+)(App)

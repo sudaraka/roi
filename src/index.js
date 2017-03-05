@@ -31,7 +31,7 @@ const
           <App path='/account'>
             <p>...add form...</p>
           </App>
-          <App path='/account/:number'>
+          <App path='/account/:editAccount'>
             <p>...edit form...</p>
           </App>
         </Router>
