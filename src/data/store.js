@@ -20,7 +20,7 @@ let
 
 if('production' !== process.env.NODE_ENV) {  // eslint-disable-line no-process-env
   const
-    createLogger = require('redux-logger')  // eslint-disable-line global-require
+  { createLogger } = require('redux-logger')  // eslint-disable-line global-require
 
   middleware = [
     ...middleware,
