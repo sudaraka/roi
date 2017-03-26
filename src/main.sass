@@ -5,7 +5,6 @@
 // align content to right
 .ralign
   text-align: right
-  justify-content: right
 
 // align content to right and use mono-spaced font
 .numeric
@@ -15,12 +14,6 @@
 // indicate the next maturity
 .next
   position: relative
-
-  // icon in cell
-  i
-    position: absolute
-    padding: .5rem
-
 
 // Indicate a table cell with action associated with it
 // set cursor to indicate this is clickable
@@ -101,12 +94,14 @@ body
     // column
     & > div
       display: flex
+      justify-content: space-between
       align-items: center
       height: 2rem
       padding: 0 1em
 
       // first row is the title of the column
       &:first-child
+        justify-content: stretch
         height: 3rem
         line-height: 1.25rem
         background-color: #434A54
@@ -185,6 +180,7 @@ body
       // last column rows
       & > div
         @extend .ralign
+        flex-direction: row-reverse
 
         // first row, title
         &:first-child
@@ -215,9 +211,11 @@ body
       & > div
         // title (first) row
         &:first-child
-          text-align: center
-          justify-content: center
           font-weight: bold
+
+          span
+            text-align: center
+            width: 100%
 
         // last (column total) row
         &:last-child
@@ -226,6 +224,7 @@ body
         // 2nd and following rows that show numeric values
         & + div
           @extend .numeric
+          flex-direction: row-reverse
           position: relative
 
           // rows 2 to 3 are specially highlighted
@@ -254,7 +253,7 @@ body
             transition: opacity .2s linear .2s
             padding: .5rem
             position: absolute
-            left: 4px
+            left: .5em
             top: -28px
             z-index: 1
 

@@ -16,10 +16,12 @@ import { h } from 'preact'
 export default ({ text, className, icon, note, onCellClick }) => {
   const
     children = [
-      (text || '')
-        .toString()
-        .split('|')
-        .reduce((arr, word) => [ ...arr, word, <br /> ], []),  // eslint-disable-line react/jsx-key
+      <span>{  // eslint-disable-line react/jsx-key
+        (text || '')
+          .toString()
+          .split('|')
+          .reduce((arr, word) => [ ...arr, word, <br /> ], [])  // eslint-disable-line react/jsx-key
+      }</span>,
 
       icon ? <i className={ `fa fa-${icon}` } /> : null,
 
