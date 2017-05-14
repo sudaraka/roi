@@ -1,5 +1,5 @@
 /**
- * src/components/columns/Account/Account.js: account column component
+ * src/components/columns/Total/Total.js: total column component
  *
  * Copyright 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *
