@@ -34,7 +34,7 @@ export default ({ type, number, amount, interestRate, monthlyRevenue, matuaritie
     ),
 
     handleClick = accountNumber => () => {
-      route(`/account/${accountNumber}`)
+      route(`/account/${accountNumber}`, true)
     },
 
     columnData = {

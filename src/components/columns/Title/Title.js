@@ -23,7 +23,7 @@ export default () => {
     ),
 
     handleClick = () => {
-      route('/account')
+      route('/account', true)
     },
 
     columnData = {
