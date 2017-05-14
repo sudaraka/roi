@@ -12,17 +12,25 @@
 
 import { h } from 'preact'
 import { connect } from 'preact-redux'
+import { route } from 'preact-router'
 
 import Box from 'Component/Box'
 
-const
-  Account = (...args) => {
-    console.log('ARGS:', args)
 
-    return (
-      <Box />
-    )
+const
+  handleCloseClick = () => {
+    route('/', true)
   },
+
+  Account = () => (
+    <Box>
+      <form className='account-form'>
+        <div className='button-block'>
+          <button type='button' onClick={ handleCloseClick }>Close</button>
+        </div>
+      </form>
+    </Box>
+  ),
 
   state2Props = state => ({ ...state.forms })
 
