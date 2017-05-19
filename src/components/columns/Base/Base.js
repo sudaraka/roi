@@ -18,8 +18,14 @@ export default ({ title = '', header = [], months = [], total = '' }) => {
   const
     cells = [
       title,
-      ...[ ...header, ...Array(3 - header.length) ],
-      ...[ ...months, ...Array(12 - months.length) ],
+      ...[
+        ...header,
+        ...Array(3 - header.length)
+      ],
+      ...[
+        ...months,
+        ...Array(12 - months.length)
+      ],
       total
     ]
 

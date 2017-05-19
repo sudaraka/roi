@@ -18,9 +18,7 @@ const
 export default (state = INITIAL_STATE, action) => {
 
   if(LOAD_ACCOUNTS === action.type) {
-    return [
-      ...(action.payload || [])
-    ]
+    return [ ...(action.payload || []) ]
   }
 
   return state

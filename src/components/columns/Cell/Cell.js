@@ -20,7 +20,11 @@ export default ({ text, className, icon, note, onCellClick }) => {
         (text || '')
           .toString()
           .split('|')
-          .reduce((arr, word) => [ ...arr, word, <br /> ], [])  // eslint-disable-line react/jsx-key
+          .reduce((arr, word) => [
+            ...arr,
+            word,
+            <br />  // eslint-disable-line react/jsx-key
+          ], [])
       }</span>,
 
       icon ? <i className={ `fa fa-${icon}` } /> : null,
