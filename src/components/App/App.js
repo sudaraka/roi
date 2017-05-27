@@ -21,7 +21,7 @@ import { loadAccounts } from 'Action/accounts'
 import { setEditAccount } from 'Action/forms'
 
 const
-  App = ({ accounts, children, editAccount, ...props }) => {
+  App = ({ accounts, children, editAccount, isFormSet, ...props }) => {
     let
       content = <Loading />
 
@@ -40,6 +40,9 @@ const
             .pop()
         )
       }
+      else if(isFormSet) {
+        props.setEditAccount(null)
+      }
     }
     else {
       props.loadAccounts()
@@ -48,7 +51,10 @@ const
     return (<div className='container'>{ content }</div>)
   },
 
-  state2Props = state => ({ 'accounts': state.accounts })
+  state2Props = ({ accounts, forms }) => ({
+    accounts,
+    'isFormSet': null !== forms.account
+  })
 
 export default connect(
   state2Props,
