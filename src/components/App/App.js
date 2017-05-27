@@ -18,7 +18,7 @@ import Total from 'Column/Total'
 import HScroll from 'Component/HScroll'
 import Loading from 'Component/Loading'
 import { loadAccounts } from 'Action/accounts'
-import { setEditAccount } from 'Action/forms'
+import { setFormAccount } from 'Action/forms'
 
 const
   App = ({ accounts, children, editAccount, isFormSet, ...props }) => {
@@ -34,14 +34,14 @@ const
       ]
 
       if(editAccount) {
-        props.setEditAccount(
+        props.setFormAccount(
           accounts
             .filter(acc => acc.number === parseInt(editAccount, 10))
             .pop()
         )
       }
       else if(isFormSet) {
-        props.setEditAccount(null)
+        props.setFormAccount(null)
       }
     }
     else {
@@ -60,6 +60,6 @@ export default connect(
   state2Props,
   {
     loadAccounts,
-    setEditAccount
+    setFormAccount
   }
 )(App)

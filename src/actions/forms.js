@@ -13,7 +13,7 @@
 import { SET_FORM_ACCOUNT } from 'Action/types'
 
 export const
-  setEditAccount = account => ({
+  setFormAccount = account => ({
     'type': SET_FORM_ACCOUNT,
     'payload': account
   })
