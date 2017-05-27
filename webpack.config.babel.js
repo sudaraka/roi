@@ -57,7 +57,10 @@ export default env => {
           {
             'test': /\.sass$/,
             'exclude': /node_modules/,
-            'loaders': ExtractText.extract([ 'css-loader', 'sass-loader' ])
+            'loaders': ExtractText.extract([
+              'css-loader',
+              'sass-loader'
+            ])
           },
           {
             'test': /\.woff2/,
