@@ -13,7 +13,14 @@
 import { SET_FORM_ACCOUNT } from 'Action/types'
 
 const
-  INITIAL_STATE = { 'account': null }
+  INITIAL_STATE = {
+    'typeList': [
+      'FD',
+      'Saving',
+      'T-Bill'
+    ],
+    'account': null
+  }
 
 export default (state = INITIAL_STATE, action) => {
 
