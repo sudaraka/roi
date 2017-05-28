@@ -10,10 +10,15 @@
  *
  */
 
-import { SET_FORM_ACCOUNT } from 'Action/types'
+import { SET_FORM_ACCOUNT, UPDATE_FORM_ACCOUNT } from 'Action/types'
 
 export const
   setFormAccount = account => ({
     'type': SET_FORM_ACCOUNT,
     'payload': account
+  }),
+
+  updateFormAccount = (field, value) => ({
+    'type': UPDATE_FORM_ACCOUNT,
+    'payload': { [field]: value }
   })

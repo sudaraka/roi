@@ -10,7 +10,7 @@
  *
  */
 
-import { SET_FORM_ACCOUNT } from 'Action/types'
+import { SET_FORM_ACCOUNT, UPDATE_FORM_ACCOUNT } from 'Action/types'
 
 const
   INITIAL_STATE = {
@@ -28,6 +28,16 @@ export default (state = INITIAL_STATE, action) => {
     return ({
       ...state,
       'account': action.payload
+    })
+  }
+
+  if(UPDATE_FORM_ACCOUNT === action.type) {
+    return ({
+      ...state,
+      'account': {
+        ...state.account,
+        ...action.payload
+      }
     })
   }
 
