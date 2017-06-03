@@ -12,10 +12,20 @@
  */
 
 import PouchDB from 'pouchdb'
+import moment from 'moment'
 
 import { calculateReturns } from 'App/helper'
 
 const
+  DEFAULT_ACCOUNT = {
+    'type': 'FD',
+    'number': '',
+    'amount': null,
+    'interestRate': null,
+    'investedDate': moment().format('YYYY-MM-DD'),
+    'period': 91
+  },
+
   dbAcc = new PouchDB('roi-accounts'),
 
   createAccount = ({ type, number, amount, interestRate, investedDate, period = 91 }) => dbAcc.put({
@@ -25,7 +35,7 @@ const
     'amount': parseFloat(amount) || 0,
     'interestRate': parseFloat(interestRate) || 0,
     investedDate,
-    'period': period || 91
+    'period': period || DEFAULT_ACCOUNT.period
   })
   .catch(err => {
     console.error(err)
@@ -75,4 +85,4 @@ const
       .then(calculateReturns)
   }
 
-export { getAccounts, setAccount, createAccount }
+export { DEFAULT_ACCOUNT, getAccounts, setAccount, createAccount }

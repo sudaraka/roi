@@ -11,6 +11,7 @@
  */
 
 import { SET_FORM_ACCOUNT, UPDATE_FORM_ACCOUNT } from 'Action/types'
+import { DEFAULT_ACCOUNT } from 'Data'
 
 const
   INITIAL_STATE = {
@@ -19,7 +20,7 @@ const
       'Saving',
       'T-Bill'
     ],
-    'account': null
+    'account': DEFAULT_ACCOUNT
   }
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
   if(SET_FORM_ACCOUNT === action.type) {
     return ({
       ...state,
-      'account': action.payload
+      'account': action.payload || DEFAULT_ACCOUNT
     })
   }
 
