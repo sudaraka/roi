@@ -11,7 +11,7 @@
  */
 
 import { LOAD_ACCOUNTS, UPDATE_ACCOUNT } from 'Action/types'
-import { getAccounts, setAccount } from 'Data'
+import { getAccounts, createAccount, setAccount } from 'Data'
 
 export const
   loadAccounts = () => dispatch => {
@@ -23,7 +23,17 @@ export const
   },
 
   updateAccount = modifiedAccount => dispatch => {
-    setAccount(modifiedAccount)
+    let
+      accountResult
+
+    if(modifiedAccount._id) {
+      accountResult = setAccount(modifiedAccount)
+    }
+    else {
+      accountResult = createAccount(modifiedAccount)
+    }
+
+    accountResult
       .then(account => {
         if(!account) {
           return
