@@ -17,6 +17,7 @@ import moment from 'moment'
 
 import Box from 'Component/Box'
 import { updateFormAccount } from 'Action/forms'
+import { updateAccount } from 'Action/accounts'
 
 import './Account.sass'
 
@@ -27,11 +28,21 @@ const
 
       handleCloseClick = () => route('/', true),
 
-      handleInput = field => e => props.updateFormAccount(field, e.target.value)
+      handleInput = field => e => props.updateFormAccount(field, e.target.value),
+
+      handleSubmit = e => {
+        e.preventDefault()
+
+        props.updateAccount(account)
+
+        handleCloseClick()
+
+        return false
+      }
 
     return (
       <Box>
-        <form className='account-form'>
+        <form className='account-form' onSubmit={ handleSubmit }>
           <div className='form-block'>
             <label>Account Type</label>
             <select className='form-control' onInput={ handleInput('type') }>
@@ -86,7 +97,7 @@ const
 
             <button
               className='btn btn-success'
-              type='button'
+              type='submit'
             >Save</button>
           </div>
         </form>
@@ -98,5 +109,8 @@ const
 
 export default connect(
   state2Props,
-  { updateFormAccount }
+  {
+    updateFormAccount,
+    updateAccount
+  }
 )(Account)

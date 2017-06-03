@@ -10,7 +10,7 @@
  *
  */
 
-import { LOAD_ACCOUNTS } from 'Action/types'
+import { LOAD_ACCOUNTS, UPDATE_ACCOUNT } from 'Action/types'
 
 const
   INITIAL_STATE = null
@@ -19,6 +19,13 @@ export default (state = INITIAL_STATE, action) => {
 
   if(LOAD_ACCOUNTS === action.type) {
     return [ ...(action.payload || []) ]
+  }
+
+  if(UPDATE_ACCOUNT === action.type) {
+    return [
+      ...state.filter(acc => acc.number !== action.account.number),
+      action.account
+    ]
   }
 
   return state
