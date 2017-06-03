@@ -11,6 +11,7 @@
  */
 
 import { SET_FORM_ACCOUNT, UPDATE_FORM_ACCOUNT } from 'Action/types'
+import { formatValue } from 'App/helper'
 
 export const
   setFormAccount = account => ({
@@ -20,5 +21,5 @@ export const
 
   updateFormAccount = (field, value) => ({
     'type': UPDATE_FORM_ACCOUNT,
-    'payload': { [field]: value }
+    'payload': { [field]: formatValue(field, value) }
   })

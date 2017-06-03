@@ -65,6 +65,17 @@ const
     ...account,
     'monthlyRevenue': account.amount * account.interestRate / 100 / 12,
     'matuarities': _nextMatuatiry(account)
-  })
+  }),
 
-export { numberFormat, calculateReturns }
+  formatValue = (field, value) => {
+    if([
+      'amount',
+      'interestRate'
+    ].includes(field)) {
+      return parseFloat(value)
+    }
+
+    return value
+  }
+
+export { numberFormat, calculateReturns, formatValue }
