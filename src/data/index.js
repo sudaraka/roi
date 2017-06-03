@@ -30,6 +30,18 @@ const
     console.error(err)
   }),
 
+  setAccount = account => dbAcc
+    .get(account.number.toString())
+    .then(doc => dbAcc.put({
+      '_rev': doc._rev,
+      ...account
+    }))
+    // Return the updated document from database to update the Redux store
+    .then(result => dbAcc.get(result.id))
+    .catch(err => {
+      console.error(err)
+    }),
+
   getAccounts = () => dbAcc.allDocs({ 'include_docs': true })
     .catch(err => {
       console.error(err)
@@ -38,4 +50,4 @@ const
     })
     .then(result => [ ...result.rows.map(record => record.doc) ])
 
-export { getAccounts, createAccount }
+export { getAccounts, setAccount, createAccount }
