@@ -24,8 +24,14 @@ export const
 
   updateAccount = modifiedAccount => dispatch => {
     setAccount(modifiedAccount)
-      .then(account => dispatch({
-        'type': UPDATE_ACCOUNT,
-        account
-      }))
+      .then(account => {
+        if(!account) {
+          return
+        }
+
+        dispatch({
+          'type': UPDATE_ACCOUNT,
+          account
+        })
+      })
   }

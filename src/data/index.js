@@ -33,7 +33,7 @@ const
     return null
   })
   // Return the updated document from database to update the Redux store
-  .then(result => getAccount(result.id)),
+  .then(getAccount),
 
   setAccount = account => dbAcc
     .get(account.number.toString())
@@ -47,7 +47,7 @@ const
       return null
     })
     // Return the updated document from database to update the Redux store
-    .then(result => getAccount(result.id)),
+    .then(getAccount),
 
   getAccounts = () => dbAcc.allDocs({ 'include_docs': true })
     .catch(err => {
@@ -58,12 +58,21 @@ const
     .then(result => [ ...result.rows.map(record => record.doc) ])
     .then(accounts => accounts.map(calculateReturns)),
 
-  getAccount = id => dbAcc.get(id)
-    .catch(err => {
-      console.error(err)
+  getAccount = result => {
+    const
+      { id } = result || { 'id': null }
 
+    if(!id) {
       return null
-    })
-    .then(account => calculateReturns(account))
+    }
+
+    return dbAcc.get(id)
+      .catch(err => {
+        console.error(err)
+
+        return null
+      })
+      .then(calculateReturns)
+  }
 
 export { getAccounts, setAccount, createAccount }
