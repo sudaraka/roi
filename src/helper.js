@@ -75,6 +75,10 @@ const
       return parseFloat(value)
     }
 
+    if([ 'period' ].includes(field)) {
+      return parseInt(value, 10)
+    }
+
     return value
   }
 
