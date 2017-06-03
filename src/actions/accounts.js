@@ -11,13 +11,11 @@
  */
 
 import { LOAD_ACCOUNTS, UPDATE_ACCOUNT } from 'Action/types'
-import { calculateReturns } from 'App/helper'
 import { getAccounts, setAccount } from 'Data'
 
 export const
   loadAccounts = () => dispatch => {
     getAccounts()
-      .then(accounts => accounts.map(calculateReturns))
       .then(accounts => dispatch({
         'type': LOAD_ACCOUNTS,
         'payload': accounts

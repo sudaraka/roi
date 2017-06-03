@@ -13,6 +13,8 @@
 
 import PouchDB from 'pouchdb'
 
+import { calculateReturns } from 'App/helper'
+
 const
   dbAcc = new PouchDB('roi-accounts'),
 
@@ -20,15 +22,18 @@ const
     '_id': number.toString(),
     type,
     number,
-    'amount': parseFloat(amount),
-    'interestRate': parseFloat(interestRate),
+    'amount': parseFloat(amount) || 0,
+    'interestRate': parseFloat(interestRate) || 0,
     investedDate,
     'period': period || 91
   })
-  .then(result => console.log(result))
   .catch(err => {
     console.error(err)
-  }),
+
+    return null
+  })
+  // Return the updated document from database to update the Redux store
+  .then(result => getAccount(result.id)),
 
   setAccount = account => dbAcc
     .get(account.number.toString())
@@ -36,11 +41,13 @@ const
       '_rev': doc._rev,
       ...account
     }))
-    // Return the updated document from database to update the Redux store
-    .then(result => dbAcc.get(result.id))
     .catch(err => {
       console.error(err)
-    }),
+
+      return null
+    })
+    // Return the updated document from database to update the Redux store
+    .then(result => getAccount(result.id)),
 
   getAccounts = () => dbAcc.allDocs({ 'include_docs': true })
     .catch(err => {
@@ -49,5 +56,14 @@ const
       return { 'rows': [] }
     })
     .then(result => [ ...result.rows.map(record => record.doc) ])
+    .then(accounts => accounts.map(calculateReturns)),
+
+  getAccount = id => dbAcc.get(id)
+    .catch(err => {
+      console.error(err)
+
+      return null
+    })
+    .then(account => calculateReturns(account))
 
 export { getAccounts, setAccount, createAccount }
