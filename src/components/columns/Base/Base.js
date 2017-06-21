@@ -29,9 +29,11 @@ export default ({ title = '', header = [], months = [], total = '' }) => {
       total
     ]
 
+  /* eslint-disable react/no-array-index-key */
   return (
     <section>
-      { cells.map((data = { 'text': '' }) => <Cell key={ data.text } { ...data } />) }
+      { cells.map((data = { 'text': '' }, index) => <Cell key={ index } { ...data } />) }
     </section>
   )
+  /* eslint-enable react/no-array-index-key */
 }
