@@ -36,7 +36,7 @@ const
       if(editAccount) {
         props.setFormAccount(
           accounts
-            .filter(acc => acc.number === parseInt(editAccount, 10))
+            .filter(acc => acc.number.toString() === editAccount)
             .pop()
         )
       }
