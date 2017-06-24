@@ -93,12 +93,16 @@ const
               className='btn btn-secondary'
               type='button'
               onClick={ handleCloseClick }
-            >Cancel</button>
+            >
+              Cancel
+            </button>
 
             <button
               className='btn btn-success'
               type='submit'
-            >Save</button>
+            >
+              Save
+            </button>
           </div>
         </form>
       </Box>
