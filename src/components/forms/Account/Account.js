@@ -38,11 +38,25 @@ const
         handleCloseClick()
 
         return false
-      }
+      },
+
+      buttons = [
+        {
+          'text': 'Cancel',
+          'onClick': handleCloseClick
+        },
+
+        {
+          'text': 'Save',
+          'style': 'success',
+          'onClick': handleSubmit
+        }
+      ]
+
 
     return (
-      <Box>
-        <form className='account-form' onSubmit={ handleSubmit }>
+      <Box buttons={ buttons }>
+        <div className='account-form'>
           <div className='form-block'>
             <label>Account Type</label>
             <select className='form-control' onInput={ handleInput('type') }>
@@ -87,24 +101,7 @@ const
               <input className='form-control' type='range' max='365' min='30' value={ period } onInput={ handleInput('period') } />
             </div>
           </div>
-
-          <div className='button-block'>
-            <button
-              className='btn btn-secondary'
-              type='button'
-              onClick={ handleCloseClick }
-            >
-              Cancel
-            </button>
-
-            <button
-              className='btn btn-success'
-              type='submit'
-            >
-              Save
-            </button>
-          </div>
-        </form>
+        </div>
       </Box>
     )
   },

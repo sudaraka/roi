@@ -14,10 +14,29 @@ import { h } from 'preact'
 
 import './Box.sass'
 
-export default ({ children }) => (
+const
+  Button = ({ text, style, onClick }) => (
+    <button
+      className={ `btn btn-${style || 'secondary'}` }
+      type='button'
+      onClick={ onClick }
+    >
+      { text || '' }
+    </button>
+  )
+
+export default ({ children, buttons = [] }) => (  // eslint-disable-line react/no-multi-comp
   <div className='popup-box'>
     <div className='inner-box'>
       { children }
+
+      <div className='button-block'>
+        {
+          buttons
+            .filter(obj => obj && 'object' === typeof obj)
+            .map(button => <Button key={ button.text } { ...button } />)
+        }
+      </div>
     </div>
   </div>
 )
