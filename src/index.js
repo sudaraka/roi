@@ -28,13 +28,14 @@ const
     rootElement = render(
       <Provider store={ store }>
         <Router>
-          <App path='/' />
           <App path='/account'>
             <AccountForm />
           </App>
           <App path='/account/:targetAccount'>
             <AccountForm />
           </App>
+
+          <App default={ true } />
         </Router>
       </Provider>,
       document.querySelector('#app'),
