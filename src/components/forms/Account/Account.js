@@ -67,7 +67,7 @@ const
         <div className='account-form'>
           <div className='form-block'>
             <label>Account Type</label>
-            <select className='form-control' onInput={ handleInput('type') }>
+            <select className='form-control' onChange={ handleInput('type') }>
               { typeList.map(value => (
                 <option key={ value } selected={ value === type }>{ value }</option>
               )) }
@@ -76,17 +76,17 @@ const
 
           <div className='form-block'>
             <label>Account Number</label>
-            <input className='form-control' type='text' value={ number } onInput={ handleInput('number') } />
+            <input className='form-control' type='text' value={ number } onChange={ handleInput('number') } />
           </div>
 
           <div className='form-block'>
             <label>Invested Amount</label>
-            <input className='form-control' type='number' min='0' step='0.01' value={ amount } onInput={ handleInput('amount') } />
+            <input className='form-control' type='number' min='0' step='0.01' value={ amount } onChange={ handleInput('amount') } />
           </div>
 
           <div className='form-block'>
             <label>Invested Date</label>
-            <input className='form-control' type='date' value={ moment(investedDate).format('YYYY-MM-DD') } onInput={ handleInput('investedDate') } />
+            <input className='form-control' type='date' value={ moment(investedDate).format('YYYY-MM-DD') } onChange={ handleInput('investedDate') } />
           </div>
 
           <div className='form-block'>
@@ -98,7 +98,7 @@ const
               min='0'
               step='0.05'
               value={ interestRate }
-              onInput={ handleInput('interestRate') }
+              onChange={ handleInput('interestRate') }
               />
           </div>
 
@@ -106,7 +106,7 @@ const
             <label>Matuarity Period</label>
             <div className='group'>
               <span>{ period } days</span>
-              <input className='form-control' type='range' max='365' min='30' value={ period } onInput={ handleInput('period') } />
+              <input className='form-control' type='range' max='365' min='30' value={ period } onChange={ handleInput('period') } />
             </div>
           </div>
         </div>
