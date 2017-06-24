@@ -16,6 +16,7 @@ import { Router } from 'preact-router'
 
 import store from 'Data/store'
 import AccountForm from 'Form/Account'
+import DeleteConfirm from 'Form/DeleteConfirm'
 
 let
   rootElement
@@ -33,6 +34,9 @@ const
           </App>
           <App path='/account/:targetAccount'>
             <AccountForm />
+          </App>
+          <App path='/delete/:targetAccount'>
+            <DeleteConfirm />
           </App>
 
           <App default={ true } />

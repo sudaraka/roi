@@ -28,6 +28,8 @@ const
 
       handleCloseClick = () => route('/', true),
 
+      handleDeleteClick = accountNumber => () => route(`/delete/${accountNumber}`, true),
+
       handleInput = field => e => props.updateFormAccount(field, e.target.value),
 
       handleSubmit = e => {
@@ -45,6 +47,12 @@ const
           'text': 'Cancel',
           'onClick': handleCloseClick
         },
+
+        account._id ? {
+          'text': 'Delete',
+          'style': 'danger',
+          'onClick': handleDeleteClick(account.number)
+        } : null,
 
         {
           'text': 'Save',
