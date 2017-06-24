@@ -32,7 +32,7 @@ const
           <App path='/account'>
             <AccountForm />
           </App>
-          <App path='/account/:editAccount'>
+          <App path='/account/:targetAccount'>
             <AccountForm />
           </App>
         </Router>

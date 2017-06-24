@@ -21,7 +21,7 @@ import { loadAccounts } from 'Action/accounts'
 import { setFormAccount } from 'Action/forms'
 
 const
-  App = ({ accounts, children, editAccount, isFormSet, ...props }) => {
+  App = ({ accounts, children, targetAccount, isFormSet, ...props }) => {
     let
       content = <Loading />
 
@@ -33,10 +33,10 @@ const
         <Total key='total-column' accounts={ accounts } />
       ]
 
-      if(editAccount) {
+      if(targetAccount) {
         props.setFormAccount(
           accounts
-            .filter(acc => acc.number.toString() === editAccount)
+            .filter(acc => acc.number.toString() === targetAccount)
             .pop()
         )
       }
