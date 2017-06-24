@@ -10,8 +10,8 @@
  *
  */
 
-import { LOAD_ACCOUNTS, UPDATE_ACCOUNT } from 'Action/types'
-import { getAccounts, createAccount, setAccount } from 'Data'
+import { LOAD_ACCOUNTS, UPDATE_ACCOUNT, DELETE_ACCOUNT } from 'Action/types'
+import { getAccounts, createAccount, setAccount, removeAccount } from 'Data'
 
 export const
   loadAccounts = () => dispatch => {
@@ -41,6 +41,20 @@ export const
 
         dispatch({
           'type': UPDATE_ACCOUNT,
+          account
+        })
+      })
+  },
+
+  deleteAccount = account => dispatch => {
+    removeAccount(account)
+      .then(result => {
+        if(!result || result.id !== account._id) {
+          return
+        }
+
+        dispatch({
+          'type': DELETE_ACCOUNT,
           account
         })
       })

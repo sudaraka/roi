@@ -10,7 +10,7 @@
  *
  */
 
-import { LOAD_ACCOUNTS, UPDATE_ACCOUNT } from 'Action/types'
+import { LOAD_ACCOUNTS, UPDATE_ACCOUNT, DELETE_ACCOUNT } from 'Action/types'
 
 const
   INITIAL_STATE = null
@@ -26,6 +26,10 @@ export default (state = INITIAL_STATE, action) => {
       ...state.filter(acc => acc.number !== action.account.number),
       action.account
     ]
+  }
+
+  if(DELETE_ACCOUNT === action.type) {
+    return [ ...state.filter(acc => acc.number !== action.account.number) ]
   }
 
   return state
