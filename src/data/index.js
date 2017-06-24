@@ -83,6 +83,13 @@ const
         return null
       })
       .then(calculateReturns)
-  }
+  },
 
-export { DEFAULT_ACCOUNT, getAccounts, setAccount, createAccount }
+  removeAccount = account => dbAcc.remove(account)
+    .catch(err => {
+      console.error(err)
+
+      return null
+    })
+
+export { DEFAULT_ACCOUNT, getAccounts, setAccount, createAccount, removeAccount }
