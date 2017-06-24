@@ -44,6 +44,7 @@ h1
   color: #E9573F
   text-transform: uppercase
   letter-spacing: 1rem
+  align-self: center
 
 html
   font-size: 100%
@@ -53,7 +54,7 @@ body
   display: flex
   flex-direction: column
   justify-content: center
-  align-items: center
+  align-items: stretch
   margin: 0
   padding: 0
 
@@ -82,7 +83,7 @@ body
 
 // Main UI container
 .container
-  width: 66vw
+  display: flex
   min-width: 960px
 
   // <section> tags will represent columns in the table
@@ -154,8 +155,7 @@ body
   // darker complexion and are the first and last columns that show titles and
   // totals respectively.
   & > section
-    float: left
-    width: 16%
+    min-width: 150px
 
     // rows 2 to 4 with special highlighting
     & > div:nth-child(-n+4)
@@ -197,15 +197,12 @@ body
   // secondary container and the middle section of the table. This has a fixed
   // and is horizontally scrollable, showing 4 column at a time.
   .hscroll
-    float: left
-    display: inline-flex
-    width: 68%
-    overflow-x: auto
-    overflow-y: hidden
+    display: flex
+    flex-grow: 1
 
     // columns in the scrollable area
     & > section
-      flex: 1 0 25%
+      flex-grow: 1
 
       // rows in the scrollable area
       & > div
