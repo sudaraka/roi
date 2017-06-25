@@ -14,7 +14,7 @@ import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import { optimize, DefinePlugin, IgnorePlugin, NamedModulesPlugin } from 'webpack'
+import { DefinePlugin, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
 
 export default env => {
@@ -100,7 +100,6 @@ export default env => {
     productionConfig = {
       'plugins': [
         new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }),
-        new optimize.UglifyJsPlugin({ 'comments': false }),
         new BundleAnalyzerPlugin({
           'analyzerMode': 'static',
           'openAnalyzer': false,
