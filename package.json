@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npm run clean && npm test",
-    "build": "webpack -p --env.prod",
+    "build": "webpack -p --env.prod --display=minimal --hide-modules --progress",
     "clean": "rm -fr dist/ webpack-report.html",
     "start": "webpack-dev-server --env.dev --hot",
     "pretest": "eslint src/",
