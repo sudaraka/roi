@@ -11,5 +11,9 @@
  */
 
 import indexConfig from './webpack-config/index'
+import appConfig from './webpack-config/app'
 
-export default env => [ indexConfig(env) ]
+export default env => [
+  indexConfig(env),
+  appConfig(env)
+]

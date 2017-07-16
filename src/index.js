@@ -1,5 +1,5 @@
 /**
- * src/index.js: main application entry point
+ * src/index.js: main web application entry point
  *
  * Copyright 2016, 2017 Sudaraka Wijesinghe <sudaraka@sudaraka.org>
  *

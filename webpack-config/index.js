@@ -20,6 +20,8 @@ import merge from 'webpack-merge'
 export default env => {
   const
     baseConfig = {
+      'target': 'electron-renderer',
+
       'context': resolve('src'),
 
       'entry': {
@@ -103,7 +105,7 @@ export default env => {
         new BundleAnalyzerPlugin({
           'analyzerMode': 'static',
           'openAnalyzer': false,
-          'reportFilename': '../webpack-report.html'
+          'reportFilename': '../index-bundle-report.html'
         })
       ]
     },
