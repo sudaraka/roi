@@ -10,59 +10,28 @@
  *
  */
 
-import { resolve } from 'path'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import { DefinePlugin, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
+
+import sharedConfig from './shared'
 
 export default env => {
   const
     baseConfig = {
       'target': 'electron-main',
 
-      'context': resolve('src'),
-
-      'entry': { 'app.js': './app.js' },
-
-      'output': {
-        'path': resolve('dist'),
-        'publicPath': '/',
-        'filename': '[name]'
-      },
-
-      'module': {
-        'loaders': [ {
-          'test': /\.js$/,
-          'exclude': /node_modules/,
-          'loaders': [ 'babel-loader' ]
-        } ]
-      },
-
-      'plugins': [
-        // Exclude moment.js locale from the build
-        new IgnorePlugin(/locale/, /moment$/),
-        new IgnorePlugin(/es5-ext/),
-        new IgnorePlugin(/es6-(iterator|symbol)/)
-      ]
+      'entry': { 'app.js': './app.js' }
     },
 
     productionConfig = {
-      'plugins': [
-        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }),
-        new BundleAnalyzerPlugin({
-          'analyzerMode': 'static',
-          'openAnalyzer': false,
-          'reportFilename': '../app-bundle-report.html'
-        })
-      ]
+      'plugins': [ new BundleAnalyzerPlugin({
+        'analyzerMode': 'static',
+        'openAnalyzer': false,
+        'reportFilename': '../app-bundle-report.html'
+      }) ]
     },
 
-    developmentConfig = {
-      'plugins': [
-        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('development') } }),
-        new NamedModulesPlugin()
-      ]
-    }
+    developmentConfig = {}
 
-  return merge(baseConfig, env.prod ? productionConfig : developmentConfig)
+  return merge(sharedConfig(env), baseConfig, env.prod ? productionConfig : developmentConfig)
 }

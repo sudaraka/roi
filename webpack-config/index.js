@@ -14,27 +14,20 @@ import { resolve } from 'path'
 import ExtractText from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import { DefinePlugin, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
+
+import sharedConfig from './shared'
 
 export default env => {
   const
     baseConfig = {
       'target': 'electron-renderer',
 
-      'context': resolve('src'),
-
       'entry': {
         'index.js': [
           './index.js',
           './main.sass'
         ]
-      },
-
-      'output': {
-        'path': resolve('dist'),
-        'publicPath': '/',
-        'filename': '[name]'
       },
 
       'resolve': {
@@ -52,11 +45,6 @@ export default env => {
       'module': {
         'loaders': [
           {
-            'test': /\.js$/,
-            'exclude': /node_modules/,
-            'loaders': [ 'babel-loader' ]
-          },
-          {
             'test': /\.sass$/,
             'exclude': /node_modules/,
             'loaders': ExtractText.extract([
@@ -73,11 +61,6 @@ export default env => {
       },
 
       'plugins': [
-        // Exclude moment.js locale from the build
-        new IgnorePlugin(/locale/, /moment$/),
-        new IgnorePlugin(/es5-ext/),
-        new IgnorePlugin(/es6-(iterator|symbol)/),
-
         new HtmlWebpackPlugin({
           'filename': 'index.html',
           'template': './index.html',
@@ -100,24 +83,14 @@ export default env => {
     },
 
     productionConfig = {
-      'plugins': [
-        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }),
-        new BundleAnalyzerPlugin({
-          'analyzerMode': 'static',
-          'openAnalyzer': false,
-          'reportFilename': '../index-bundle-report.html'
-        })
-      ]
+      'plugins': [ new BundleAnalyzerPlugin({
+        'analyzerMode': 'static',
+        'openAnalyzer': false,
+        'reportFilename': '../index-bundle-report.html'
+      }) ]
     },
 
     developmentConfig = {
-      'performance': { 'hints': false },
-
-      'plugins': [
-        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('development') } }),
-        new NamedModulesPlugin()
-      ],
-
       'devtool': 'eval',
 
       'devServer': {
@@ -131,5 +104,5 @@ export default env => {
       }
     }
 
-  return merge(baseConfig, env.prod ? productionConfig : developmentConfig)
+  return merge(sharedConfig(env), baseConfig, env.prod ? productionConfig : developmentConfig)
 }
