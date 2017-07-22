@@ -20,6 +20,8 @@ export default env => {
     baseConfig = {
       'target': 'electron-main',
 
+      'node': { '__dirname': false },
+
       'entry': { 'app.js': './app.js' }
     },
 

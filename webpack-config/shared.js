@@ -21,7 +21,7 @@ export default env => {
 
       'output': {
         'path': resolve('dist'),
-        'publicPath': '/',
+        'publicPath': './',
         'filename': '[name]'
       },
 

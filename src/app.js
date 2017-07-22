@@ -10,3 +10,25 @@
  *
  */
 
+import { app, BrowserWindow } from 'electron'
+
+const
+  createWindow = () => {
+    let
+      win = new BrowserWindow({
+        'show': false,
+        'autoHideMenuBar': true
+      })
+
+    win
+      .on('ready-to-show', () => win.show())
+      .on('close', () => (win = null))
+      .loadURL(`file://${__dirname}/index.html`)
+
+    return win
+  }
+
+app
+  .on('ready', () => {
+    createWindow()
+  })
