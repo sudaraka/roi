@@ -90,19 +90,7 @@ export default env => {
       }) ]
     },
 
-    developmentConfig = {
-      'devtool': 'eval',
-
-      'devServer': {
-        'host': '127.0.0.1',
-        'port': 5000,
-
-        'historyApiFallback': true,
-
-        'clientLogLevel': 'warning',
-        'stats': 'errors-only'
-      }
-    }
+    developmentConfig = {}
 
   return merge(sharedConfig(env), baseConfig, env.prod ? productionConfig : developmentConfig)
 }

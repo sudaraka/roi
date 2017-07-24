@@ -17,39 +17,23 @@ import { Router } from 'preact-router'
 import store from 'Data/store'
 import AccountForm from 'Form/Account'
 import DeleteConfirm from 'Form/DeleteConfirm'
+import App from 'Component/App'
 
-let
-  rootElement
+render(
+  <Provider store={ store }>
+    <Router>
+      <App path='/account'>
+        <AccountForm />
+      </App>
+      <App path='/account/:targetAccount'>
+        <AccountForm />
+      </App>
+      <App path='/delete/:targetAccount'>
+        <DeleteConfirm />
+      </App>
 
-const
-  init = () => {
-    const
-      { 'default': App } = require('Component/App')  // eslint-disable-line global-require
-
-    rootElement = render(
-      <Provider store={ store }>
-        <Router>
-          <App path='/account'>
-            <AccountForm />
-          </App>
-          <App path='/account/:targetAccount'>
-            <AccountForm />
-          </App>
-          <App path='/delete/:targetAccount'>
-            <DeleteConfirm />
-          </App>
-
-          <App default={ true } />
-        </Router>
-      </Provider>,
-      document.querySelector('#app'),
-      rootElement
-    )
-  }
-
-init()
-
-if(module.hot) {
-  module.hot.accept('Component/App', init)
-  module.hot.accept('Data/store', init)
-}
+      <App default={ true } />
+    </Router>
+  </Provider>,
+  document.querySelector('#app')
+)
