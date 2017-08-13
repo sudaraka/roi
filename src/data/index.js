@@ -11,7 +11,7 @@
  *
  */
 
-import PouchDB from 'pouchdb'
+import PouchDB from 'pouchdb-browser'
 import moment from 'moment'
 
 import { calculateReturns } from 'App/helper'

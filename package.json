@@ -46,7 +46,7 @@
     "html-webpack-plugin": "^2.29.0",
     "moment": "^2.18.1",
     "node-sass": "^4.5.3",
-    "pouchdb": "^6.3.3",
+    "pouchdb-browser": "^6.3.4",
     "preact": "^8.2.1",
     "preact-redux": "^2.0.2",
     "preact-router": "^2.5.4",
