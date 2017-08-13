@@ -48,15 +48,17 @@
     "pouchdb-browser": "^6.3.4",
     "preact": "^8.2.1",
     "preact-redux": "^2.0.2",
-    "preact-router": "^2.5.4",
+    "preact-router": "^2.5.5",
+    "rc": "^1.2.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
+    "shebang-loader": "0.0.1",
     "uglify-js": "github:mishoo/UglifyJS2#harmony-v2.8.22",
     "uglifyjs-webpack-plugin": "^0.4.4",
-    "webpack": "^3.2.0",
-    "webpack-bundle-analyzer": "^2.8.3",
+    "webpack": "^3.5.5",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-merge": "^4.1.0"
   }
 }

@@ -10,6 +10,7 @@
  *
  */
 
+import { resolve } from 'path'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import merge from 'webpack-merge'
 
@@ -22,7 +23,16 @@ export default env => {
 
       'node': { '__dirname': false },
 
-      'entry': { 'app.js': './app.js' }
+      'entry': { 'app.js': './app.js' },
+
+      'module': {
+        'loaders': [ {
+          'test': /node_modules\/rc\/index\.js/,
+          'loaders': [ 'shebang-loader' ]
+        } ]
+      },
+
+      'resolve': { 'alias': { 'Handler': resolve('src/handlers/') } }
     },
 
     productionConfig = {
