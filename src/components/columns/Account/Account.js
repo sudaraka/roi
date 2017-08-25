@@ -14,12 +14,13 @@ import { h } from 'preact'
 import { route } from 'preact-router'
 import moment from 'moment'
 
+import { MONTHS_PER_YEAR } from 'App/constants'
 import { numberFormat } from 'App/helper'
 import Base from 'Column/Base'
 
 export default ({ type, number, amount, interestRate, monthlyRevenue, matuarities }) => {
   const
-    months = [ ...Array(12) ].map(
+    months = [ ...Array(MONTHS_PER_YEAR) ].map(
       (_, index) => {
         const
           matuarity = matuarities[index] || {}

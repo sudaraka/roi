@@ -99,7 +99,7 @@ const
               step='0.05'
               value={ interestRate }
               onChange={ handleInput('interestRate') }
-              />
+            />
           </div>
 
           <div className='form-block range-block'>

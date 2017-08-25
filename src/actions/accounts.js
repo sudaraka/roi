@@ -24,7 +24,7 @@ export const
 
   updateAccount = modifiedAccount => dispatch => {
     let
-      accountResult
+      accountResult = null
 
     if(modifiedAccount._id) {
       accountResult = setAccount(modifiedAccount)

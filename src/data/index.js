@@ -17,33 +17,43 @@ import moment from 'moment'
 import { calculateReturns } from 'App/helper'
 
 const
+  DEFAULT_PERIOD = 91,
+
   DEFAULT_ACCOUNT = {
     'type': 'FD',
     'number': '',
     'amount': null,
     'interestRate': null,
     'investedDate': moment().format('YYYY-MM-DD'),
-    'period': 91
+    'period': DEFAULT_PERIOD
   },
 
   dbAcc = new PouchDB('roi-accounts'),
 
-  createAccount = ({ type, number, amount, interestRate, investedDate, period = 91 }) => dbAcc.put({
-    '_id': number.toString(),
+  createAccount = ({
     type,
     number,
-    'amount': parseFloat(amount) || 0,
-    'interestRate': parseFloat(interestRate) || 0,
+    amount,
+    interestRate,
     investedDate,
-    'period': period || DEFAULT_ACCOUNT.period
-  })
-  .catch(err => {
-    console.error(err)
+    period = DEFAULT_PERIOD
+  }) => dbAcc
+    .put({
+      '_id': number.toString(),
+      type,
+      number,
+      'amount': parseFloat(amount) || 0,
+      'interestRate': parseFloat(interestRate) || 0,
+      investedDate,
+      'period': period || DEFAULT_ACCOUNT.period
+    })
+    .catch(err => {
+      console.error(err)
 
-    return null
-  })
-  // Return the updated document from database to update the Redux store
-  .then(getAccount),
+      return null
+    })
+    // Return the updated document from database to update the Redux store
+    .then(getAccount),
 
   setAccount = account => dbAcc
     .get(account.number.toString())

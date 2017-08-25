@@ -12,19 +12,22 @@
 
 import { h } from 'preact'
 
+import { MONTHS_PER_YEAR } from 'App/constants'
 import Cell from 'Column/Cell'
 
 export default ({ title = '', header = [], months = [], total = '' }) => {
   const
+    HEADER_ROWS = 3,
+
     cells = [
       title,
       ...[
         ...header,
-        ...Array(3 - header.length)
+        ...Array(HEADER_ROWS - header.length)
       ],
       ...[
         ...months,
-        ...Array(12 - months.length)
+        ...Array(MONTHS_PER_YEAR - months.length)
       ],
       total
     ]

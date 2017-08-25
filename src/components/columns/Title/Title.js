@@ -14,11 +14,12 @@ import { h } from 'preact'
 import { route } from 'preact-router'
 import moment from 'moment'
 
+import { MONTHS_PER_YEAR } from 'App/constants'
 import Base from 'Column/Base'
 
 export default () => {
   const
-    months = [ ...Array(12) ].map(
+    months = [ ...Array(MONTHS_PER_YEAR) ].map(
       (_, index) => ({ 'text': moment(`17-${index + 1}-1`, 'YY-M-D').format('MMMM') })
     ),
 

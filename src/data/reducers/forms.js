@@ -24,7 +24,6 @@ const
   }
 
 export default (state = INITIAL_STATE, action) => {
-
   if(SET_FORM_ACCOUNT === action.type) {
     return ({
       ...state,

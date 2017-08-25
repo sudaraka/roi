@@ -13,6 +13,7 @@
 
 import { h } from 'preact'
 
+import { A_BEFORE_B, B_BEFORE_A } from 'App/constants'
 import Account from 'Column/Account'
 
 export default ({ accounts }) => {
@@ -21,7 +22,7 @@ export default ({ accounts }) => {
       'T-Bill': 1,
       'FD': 2,
       'Saving': 3
-    }[type] || 9999),
+    }[type] || Number.MAX_SAFE_INTEGER),
 
     accountDisplayOrder = (a, b) => {
       const
@@ -29,19 +30,19 @@ export default ({ accounts }) => {
         { 'type': typeB, 'number': numB } = b
 
       if(typeOrder(typeA) < typeOrder(typeB)) {
-        return -1
+        return A_BEFORE_B
       }
       else if(typeOrder(typeA) > typeOrder(typeB)) {
-        return 1
+        return B_BEFORE_A
       }
 
       // Both account have the same type, continue to sort by account number
 
       if(numA < numB) {
-        return -1
+        return A_BEFORE_B
       }
       else if(numA > numB) {
-        return 1
+        return B_BEFORE_A
       }
 
       return 0

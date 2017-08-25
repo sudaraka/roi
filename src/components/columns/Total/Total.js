@@ -11,6 +11,8 @@
  */
 
 import { h } from 'preact'
+
+import { MONTHS_PER_YEAR, PERCENT } from 'App/constants'
 import { numberFormat } from 'App/helper'
 import Base from 'Column/Base'
 
@@ -18,7 +20,7 @@ const
   INITIAL_ACCOUNT_SUMMARY = {
     'amount': 0,
     'monthlyRevenue': 0,
-    'months': [ ...Array(12) ].map(_ => 0)
+    'months': [ ...Array(MONTHS_PER_YEAR) ].map(_ => 0)
   },
 
   accumiulateAccount = (obj, acc) => ({
@@ -39,7 +41,7 @@ export default ({ accounts }) => {
       'title': { 'text': 'Total' },
       'header': [
         { 'text': numberFormat(totalData.amount) },
-        { 'text': `${(grandTotal / totalData.amount * 100).toFixed(2)}%` },
+        { 'text': `${(grandTotal / totalData.amount * PERCENT).toFixed(2)}%` },
         { 'text': numberFormat(totalData.monthlyRevenue) }
       ],
       'months': totalData.months.map(rev => ({ 'text': numberFormat(rev, 0) })),

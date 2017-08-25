@@ -11,22 +11,28 @@
  */
 
 const
+  MONTHS_PER_YR = 12,
+  SECS_PER_MIN = 60,
+  MINS_PER_HR = 60,
+  HRS_PER_DAY = 24,
+  DAYS_PER_YEAR = 365,
+  MSS_PER_SEC = 1000,
+  PERCENT = 100,
+
   numberFormat = (num, empty = '') => (parseFloat(num) || empty).toLocaleString('en', {
     'minimumFractionDigits': 2,
     'maximumFractionDigits': 2
   }),
 
   _nextMatuatiry = ({ amount, interestRate, investedDate, period }) => {
-    investedDate = investedDate.toDate ? investedDate.toDate() : new Date(investedDate)
-
     const
-      DAYS_PER_YEAR = 365,
-      MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000,
+      MILLISECONDS_PER_DAY = HRS_PER_DAY * MINS_PER_HR * SECS_PER_MIN * MSS_PER_SEC,
       MILLISECONDS_PER_YEAR = DAYS_PER_YEAR * MILLISECONDS_PER_DAY,
 
-      roi = amount * interestRate / 100 / DAYS_PER_YEAR * period,
+      _investedDate = investedDate.toDate ? investedDate.toDate() : new Date(investedDate),
+      roi = amount * interestRate / PERCENT / DAYS_PER_YEAR * period,
       periodInMilliseconds = period * MILLISECONDS_PER_DAY,
-      date = investedDate.getTime() + periodInMilliseconds,
+      date = _investedDate.getTime() + periodInMilliseconds,
       now = (new Date()).getTime(),
       yearFromNow = now + MILLISECONDS_PER_YEAR,
       periodFromNow = now + periodInMilliseconds,
@@ -63,7 +69,7 @@ const
 
   calculateReturns = account => ({
     ...account,
-    'monthlyRevenue': account.amount * account.interestRate / 100 / 12,
+    'monthlyRevenue': account.amount * account.interestRate / PERCENT / MONTHS_PER_YR,
     'matuarities': _nextMatuatiry(account)
   }),
 
