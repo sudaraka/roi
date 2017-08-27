@@ -11,10 +11,10 @@
  *
  */
 
-import PouchDB from 'pouchdb-browser'
 import moment from 'moment'
 
 import { calculateReturns } from 'App/helper'
+import getDB from './db'
 
 const
   DEFAULT_PERIOD = 91,
@@ -28,7 +28,7 @@ const
     'period': DEFAULT_PERIOD
   },
 
-  dbAcc = new PouchDB('roi-accounts'),
+  dbAcc = getDB('roi-accounts'),
 
   createAccount = ({
     type,
