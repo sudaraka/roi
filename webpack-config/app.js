@@ -25,13 +25,6 @@ export default env => {
 
       'entry': { 'app.js': './app.js' },
 
-      'module': {
-        'loaders': [ {
-          'test': /node_modules\/rc\/index\.js/,
-          'loaders': [ 'shebang-loader' ]
-        } ]
-      },
-
       'resolve': { 'alias': { 'Handler': resolve('src/handlers/') } }
     },
 

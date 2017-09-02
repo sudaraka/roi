@@ -13,9 +13,42 @@
 
 import PouchDB from 'pouchdb-browser'
 
+import cfg from 'App/config'
+
 export default name => {
+  let
+    sync = null
+
   const
     db = new PouchDB(name)
 
-  return db
+  try {
+    const
+      { 'db': { url } } = cfg,
+      remoteDB = new URL(`${url}/${name}`)
+
+    if(remoteDB) {
+      // Got valid database URL, Setup sync
+      sync = db.sync(
+        remoteDB.href,
+        {
+          'live': true,
+          'retry': true,
+          'ajax': {
+            'rejectUnauthorized': false,
+            'requestCert': true,
+            'agent': false
+          }
+        }
+      )
+    }
+  }
+  catch(_) {
+    // no-op
+  }
+
+  return {
+    db,
+    sync
+  }
 }

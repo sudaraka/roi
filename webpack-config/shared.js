@@ -26,11 +26,17 @@ export default env => {
       },
 
       'module': {
-        'loaders': [ {
-          'test': /\.js$/,
-          'exclude': /node_modules/,
-          'loaders': [ 'babel-loader' ]
-        } ]
+        'loaders': [
+          {
+            'test': /\.js$/,
+            'exclude': /node_modules/,
+            'loaders': [ 'babel-loader' ]
+          },
+          {
+            'test': /node_modules\/rc\/index\.js/,
+            'loaders': [ 'shebang-loader' ]
+          }
+        ]
       },
 
       'plugins': [

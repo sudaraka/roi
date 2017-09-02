@@ -28,7 +28,7 @@ const
     'period': DEFAULT_PERIOD
   },
 
-  dbAcc = getDB('roi-accounts'),
+  { db } = getDB('roi-accounts'),
 
   createAccount = ({
     type,
@@ -37,7 +37,7 @@ const
     interestRate,
     investedDate,
     period = DEFAULT_PERIOD
-  }) => dbAcc
+  }) => db
     .put({
       '_id': number.toString(),
       type,
@@ -55,9 +55,9 @@ const
     // Return the updated document from database to update the Redux store
     .then(getAccount),
 
-  setAccount = account => dbAcc
+  setAccount = account => db
     .get(account.number.toString())
-    .then(doc => dbAcc.put({
+    .then(doc => db.put({
       '_rev': doc._rev,
       ...account
     }))
@@ -69,7 +69,7 @@ const
     // Return the updated document from database to update the Redux store
     .then(getAccount),
 
-  getAccounts = () => dbAcc.allDocs({ 'include_docs': true })
+  getAccounts = () => db.allDocs({ 'include_docs': true })
     .catch(err => {
       console.error(err)
 
@@ -86,7 +86,7 @@ const
       return null
     }
 
-    return dbAcc.get(id)
+    return db.get(id)
       .catch(err => {
         console.error(err)
 
@@ -95,7 +95,7 @@ const
       .then(calculateReturns)
   },
 
-  removeAccount = account => dbAcc.remove(account)
+  removeAccount = account => db.remove(account)
     .catch(err => {
       console.error(err)
 
