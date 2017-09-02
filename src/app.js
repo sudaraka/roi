@@ -12,6 +12,8 @@
 
 import { app, BrowserWindow } from 'electron'
 
+import cfg from 'App/config'
+
 const
   createWindow = () => {
     let
@@ -31,4 +33,17 @@ const
 app
   .on('ready', () => {
     createWindow()
+  })
+  // Handle cert face related error during HTTPS communication
+  .on('certificate-error', (e, webContents, url, err, cert, cb) => {  // eslint-disable-line max-params
+    if(url.startsWith(cfg.db.url) && 'net::ERR_CERT_AUTHORITY_INVALID' === err) {
+      // HTTPS call to external database (sync), and unauthorized error caused
+      // due to using self-signed certificate.
+      e.preventDefault()
+
+      return cb(true)
+    }
+
+    // Default behavior, fail the HTTPS call
+    return cb(false)
   })

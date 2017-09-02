@@ -33,7 +33,6 @@ export default env => {
       'resolve': {
         'alias': {
           'Action': resolve('src/actions/'),
-          'App': resolve('src/'),
           'Column': resolve('src/components/columns/'),
           'Component': resolve('src/components/'),
           'Data': resolve('src/data/'),

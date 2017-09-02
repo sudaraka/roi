@@ -25,6 +25,8 @@ export default env => {
         'filename': '[name]'
       },
 
+      'resolve': { 'alias': { 'App': resolve('src/') } },
+
       'module': {
         'loaders': [
           {
