@@ -12,12 +12,28 @@
 
 import { syncEvent } from 'Data'
 import { loadAccounts } from 'Action/accounts'
+import { SYNC_RELOAD_THESHOLD } from 'App/constants'
 
-export default store => {
+let
+  loadTimer = null
+
+const
+  loadData = dispatch => () => {
+    if(loadTimer) {
+      clearTimeout(loadTimer)
+    }
+
+    loadTimer = setTimeout(
+      () => dispatch(loadAccounts()),
+      SYNC_RELOAD_THESHOLD
+    )
+  }
+
+export default ({ dispatch }) => {
   const
-    syncing = syncEvent('paused', () => store.dispatch(loadAccounts()))
+    syncing = syncEvent('paused', loadData(dispatch))
 
   if(!syncing) {
-    store.dispatch(loadAccounts())
+    dispatch(loadAccounts())
   }
 }

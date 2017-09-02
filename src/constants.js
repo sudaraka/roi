@@ -14,4 +14,5 @@ export const
   MONTHS_PER_YEAR = 12,
   PERCENT = 100,
   A_BEFORE_B = -1,
-  B_BEFORE_A = 1
+  B_BEFORE_A = 1,
+  SYNC_RELOAD_THESHOLD = 100
