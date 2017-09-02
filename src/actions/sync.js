@@ -14,5 +14,10 @@ import { syncEvent } from 'Data'
 import { loadAccounts } from 'Action/accounts'
 
 export default store => {
-  syncEvent('paused', () => store.dispatch(loadAccounts()))
+  const
+    syncing = syncEvent('paused', () => store.dispatch(loadAccounts()))
+
+  if(!syncing) {
+    store.dispatch(loadAccounts())
+  }
 }

@@ -17,7 +17,6 @@ import Title from 'Column/Title'
 import Total from 'Column/Total'
 import HScroll from 'Component/HScroll'
 import Loading from 'Component/Loading'
-import { loadAccounts } from 'Action/accounts'
 import { setFormAccount } from 'Action/forms'
 
 const
@@ -44,9 +43,6 @@ const
         props.setFormAccount(null)
       }
     }
-    else {
-      props.loadAccounts()
-    }
 
     return (<div className='container'>{ content }</div>)
   },
@@ -58,8 +54,5 @@ const
 
 export default connect(
   state2Props,
-  {
-    loadAccounts,
-    setFormAccount
-  }
+  { setFormAccount }
 )(App)
