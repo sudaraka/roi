@@ -15,9 +15,12 @@ import { Provider } from 'preact-redux'
 import { Router } from 'preact-router'
 
 import store from 'Data/store'
+import setupSync from 'Action/sync'
 import AccountForm from 'Form/Account'
 import DeleteConfirm from 'Form/DeleteConfirm'
 import App from 'Component/App'
+
+setupSync(store)
 
 render(
   <Provider store={ store }>

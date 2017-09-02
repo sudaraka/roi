@@ -28,7 +28,17 @@ const
     'period': DEFAULT_PERIOD
   },
 
-  { db } = getDB('roi-accounts'),
+  { db, sync } = getDB('roi-accounts'),
+
+  syncEvent = (event, f) => {
+    if(!sync || 'function' !== typeof f) {
+      return false
+    }
+
+    sync.on(event, f)
+
+    return true
+  },
 
   createAccount = ({
     type,
@@ -102,4 +112,11 @@ const
       return null
     })
 
-export { DEFAULT_ACCOUNT, getAccounts, setAccount, createAccount, removeAccount }
+export {
+  DEFAULT_ACCOUNT,
+  getAccounts,
+  setAccount,
+  createAccount,
+  removeAccount,
+  syncEvent
+}
