@@ -10,12 +10,13 @@
  *
  */
 
-import rc from 'rc'
+import Configstore from 'configstore'
 
 import { name } from '../package.json'
 
 const
   appName = name.split('/').pop() || 'roi',
-  DEFAULT_CONFIG = { 'db': { 'url': null } }
+  DEFAULT_CONFIG = { 'db': { 'url': null } },
+  config = new Configstore(appName, DEFAULT_CONFIG)
 
-export default rc(appName, DEFAULT_CONFIG)
+export default config.all
