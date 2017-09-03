@@ -14,8 +14,10 @@ import { combineReducers } from 'redux'
 
 import accounts from 'Reducer/accounts'
 import forms from 'Reducer/forms'
+import sync from 'Reducer/sync'
 
 export default combineReducers({
   accounts,
-  forms
+  forms,
+  sync
 })

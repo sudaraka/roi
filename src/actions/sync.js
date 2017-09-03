@@ -12,19 +12,37 @@
 
 import { syncEvent } from 'Data'
 import { loadAccounts } from 'Action/accounts'
-import { SYNC_RELOAD_THESHOLD } from 'App/constants'
+import {
+  SYNC_RELOAD_THESHOLD,
+  SYNC_STATUS_THRESHOLD,
+  SYNC_STATUS_NONE
+} from 'App/constants'
+import { SET_SYNC_STATUS } from 'Action/types'
 
 let
-  loadTimer = null
+  loadTimer = null,
+  syncTimer = null
 
 const
+  setSyncStatus = status => ({
+    'type': SET_SYNC_STATUS,
+    'payload': status
+  }),
+
   loadData = dispatch => () => {
-    if(loadTimer) {
-      clearTimeout(loadTimer)
-    }
+    clearTimeout(loadTimer)
 
     loadTimer = setTimeout(
-      () => dispatch(loadAccounts()),
+      () => {
+        dispatch(loadAccounts())
+
+        clearTimeout(syncTimer)
+
+        syncTimer = setTimeout(
+          () => dispatch(setSyncStatus(SYNC_STATUS_NONE)),
+          SYNC_STATUS_THRESHOLD
+        )
+      },
       SYNC_RELOAD_THESHOLD
     )
   }
@@ -33,7 +51,11 @@ export default ({ dispatch }) => {
   const
     syncing = syncEvent('paused', loadData(dispatch))
 
-  if(!syncing) {
+  if(syncing) {
+    syncEvent('active', ({ direction }) => dispatch(setSyncStatus(direction)))
+  }
+  else {
+    // Data sync is unavailable, manually load accounts from local DB.
     dispatch(loadAccounts())
   }
 }
