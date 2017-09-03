@@ -11,36 +11,61 @@
  */
 
 import { h } from 'preact'
+import { connect } from 'preact-redux'
 import { route } from 'preact-router'
 import moment from 'moment'
 
-import { MONTHS_PER_YEAR } from 'App/constants'
+import {
+  MONTHS_PER_YEAR,
+  SYNC_STATUS_NONE,
+  SYNC_STATUS_PULL,
+  SYNC_STATUS_PUSH
+} from 'App/constants'
 import Base from 'Column/Base'
 
-export default () => {
-  const
-    months = [ ...Array(MONTHS_PER_YEAR) ].map(
-      (_, index) => ({ 'text': moment(`17-${index + 1}-1`, 'YY-M-D').format('MMMM') })
-    ),
+import './Title.sass'
 
-    handleClick = () => {
-      route('/account', true)
-    },
+const
+  STATUS_MAP = {
+    [SYNC_STATUS_NONE]: null,
+    [SYNC_STATUS_PUSH]: 'cloud-upload',
+    [SYNC_STATUS_PULL]: 'cloud-download'
+  },
 
-    columnData = {
-      'title': {
-        'text': 'Account',
-        'className': 'action action-add',
-        'icon': 'plus',
-        'onCellClick': handleClick
+  Title = ({ sync }) => {
+    const
+      months = [ ...Array(MONTHS_PER_YEAR) ].map(
+        (_, index) => ({ 'text': moment(`17-${index + 1}-1`, 'YY-M-D').format('MMMM') })
+      ),
+
+      handleClick = () => {
+        route('/account', true)
       },
-      'header': [
-        { 'text': 'Amount' },
-        { 'text': 'Interest Rate' },
-        { 'text': 'Revenue / Month' }
-      ],
-      months
-    }
 
-  return <Base { ...columnData } />
-}
+      columnData = {
+        'title': {
+          'text': 'Account',
+          'className': 'action action-add',
+          'icon': 'plus',
+          'onCellClick': handleClick
+        },
+        'header': [
+          { 'text': 'Amount' },
+          { 'text': 'Interest Rate' },
+          { 'text': 'Revenue / Month' }
+        ],
+        months,
+        'total': {
+          'className': `sync ${SYNC_STATUS_NONE === sync ? '' : 'active'}`,
+          'icon': STATUS_MAP[sync]
+        }
+      }
+
+    return <Base { ...columnData } />
+  },
+
+  state2Props = ({ sync }) => ({ sync })
+
+export default connect(
+  state2Props
+)(Title)
