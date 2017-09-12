@@ -38,6 +38,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babili-webpack-plugin": "^0.1.2",
     "configstore": "^3.1.1",
     "css-loader": "^0.28.7",
     "electron": "^1.7.5",
@@ -55,8 +56,6 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
     "shebang-loader": "0.0.1",
-    "uglify-js": "github:mishoo/UglifyJS2#harmony-v2.8.22",
-    "uglifyjs-webpack-plugin": "^0.4.4",
     "webpack": "^3.5.5",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-merge": "^4.1.0"

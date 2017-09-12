@@ -13,6 +13,7 @@
 import { resolve } from 'path'
 import { DefinePlugin, IgnorePlugin, NamedModulesPlugin } from 'webpack'
 import merge from 'webpack-merge'
+import MinifyPlugin from 'babili-webpack-plugin'
 
 export default env => {
   const
@@ -49,7 +50,12 @@ export default env => {
       ]
     },
 
-    productionConfig = { 'plugins': [ new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }) ] },
+    productionConfig = {
+      'plugins': [
+        new DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }),
+        new MinifyPlugin()
+      ]
+    },
 
     developmentConfig = {
       'performance': { 'hints': false },
