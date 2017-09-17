@@ -41,6 +41,7 @@ app
   .on('ready', () => {
     createWindow()
   })
+  .on('window-all-closed', () => app.quit())
   // Handle cert face related error during HTTPS communication
   .on('certificate-error', (e, webContents, url, err, cert, cb) => {  // eslint-disable-line max-params
     if(url.startsWith(cfg.db.url) && 'net::ERR_CERT_AUTHORITY_INVALID' === err) {
