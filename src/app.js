@@ -10,11 +10,16 @@
  *
  */
 
-import { app, BrowserWindow } from 'electron'
+import { app, Menu, BrowserWindow } from 'electron'
 
 import cfg from 'App/config'
 
 const
+  menuTemplate = [ {
+    'label': 'roi',
+    'submenu': [ { 'role': 'quit' } ]
+  } ],
+
   createWindow = () => {
     let
       win = new BrowserWindow({
@@ -29,6 +34,8 @@ const
 
     return win
   }
+
+Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate))
 
 app
   .on('ready', () => {
