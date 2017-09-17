@@ -1,0 +1,10 @@
+{
+  "appId": "org.sudaraka.roi",
+  "productName": "roi",
+  "linux": {
+    "target": "AppImage",
+    "icon": "../assets/icons",
+    "category": "Utility",
+    "artifactName": "${productName}"
+  }
+}
