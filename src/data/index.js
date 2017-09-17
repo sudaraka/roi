@@ -48,8 +48,7 @@ const
     investedDate,
     period = DEFAULT_PERIOD
   }) => db
-    .put({
-      '_id': number.toString(),
+    .post({
       type,
       number,
       'amount': parseFloat(amount) || 0,
@@ -66,8 +65,9 @@ const
     .then(getAccount),
 
   setAccount = account => db
-    .get(account.number.toString())
+    .get(account._id.toString())
     .then(doc => db.put({
+      '_id': doc._id,
       '_rev': doc._rev,
       ...account
     }))
