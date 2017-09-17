@@ -22,6 +22,10 @@ const
       {
         'role': 'toggledevtools',
         'visible': false
+      },
+      {
+        'role': 'forcereload',
+        'visible': false
       }
     ]
   } ],
