@@ -17,6 +17,6 @@ import { name } from '../package.json'
 const
   appName = name.split('/').pop() || 'roi',
   DEFAULT_CONFIG = { 'db': { 'url': null } },
-  config = new Configstore(appName, DEFAULT_CONFIG)
+  config = new Configstore(appName, DEFAULT_CONFIG, { 'globalConfigPath': true })
 
 export default config.all
