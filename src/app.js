@@ -17,7 +17,13 @@ import cfg from 'App/config'
 const
   menuTemplate = [ {
     'label': 'roi',
-    'submenu': [ { 'role': 'quit' } ]
+    'submenu': [
+      { 'role': 'quit' },
+      {
+        'role': 'toggledevtools',
+        'visible': false
+      }
+    ]
   } ],
 
   createWindow = () => {
