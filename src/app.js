@@ -29,7 +29,7 @@ const
 
     win
       .on('ready-to-show', () => win.show())
-      .on('close', () => (win = null))
+      .on('closed', () => (win = null))
       .loadURL(`file://${__dirname}/index.html`)
 
     return win
