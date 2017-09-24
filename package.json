@@ -2,9 +2,7 @@
   "name": "@sudaraka/roi",
   "version": "0.0.0",
   "description": "Record different types of investment information and calculate monthly/yearly return.",
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "main": "app.js",
   "scripts": {
     "build:webpack": "webpack --env.prod --display=minimal --hide-modules --progress",
